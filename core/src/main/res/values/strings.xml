@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="razrabs">РАЗРАБЫ</string>
+    <string name="smartass">ЕСЛИ СМЫСЛ НИ В ЧЕМ, ТО В ЧЕМ?</string>
+    <string name="about_us">О НАС</string>
+    <string name="contact">СВЯЗАТЬСЯ</string>
+    <string name="github">GITHUB</string>
+    <string name="yt">YT</string>
+    <string name="tg">TG</string>
+    <string name="tw">TW</string>
 </resources>

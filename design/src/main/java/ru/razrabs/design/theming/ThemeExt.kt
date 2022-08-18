@@ -23,6 +23,9 @@ fun contrastPrimary() = palette().contrastPrimary
 fun secondary() = palette().secondary
 
 @Composable
+fun secondary60() = palette().secondary.copy(alpha = 0.6f)
+
+@Composable
 fun contrastSecondary() = palette().contrastSecondary
 
 @Composable

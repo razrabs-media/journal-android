@@ -1,0 +1,1040 @@
+type PermissionItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: PermissionName!
+}
+
+"""
+Uid custom scalar type
+"""
+scalar UID
+
+"""
+Date scalar type
+"""
+scalar Date
+
+enum PermissionName {
+  CreateFeed
+
+  CreateComment
+
+  SuperAdministrator
+}
+
+type Permission {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: PermissionName!
+}
+
+type ProfileItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  fullName: String
+
+  publicName: String
+
+  email: String
+
+  avatarUrl: String
+
+  commentsCount: Float
+}
+
+type UserGroupItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+}
+
+type UserItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  login: String!
+
+  isTransportPassword: Boolean!
+
+  status: String!
+
+  profileUid: UID
+
+  profile: ProfileItem
+}
+
+type User {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  login: String!
+
+  isTransportPassword: Boolean!
+
+  status: String!
+
+  profileUid: UID
+
+  profile: ProfileItem
+
+  userGroups: [UserGroupItem!]!
+}
+
+type TokensDto {
+  refreshToken: String!
+
+  accessToken: String!
+}
+
+type UserToken {
+  tokens: TokensDto!
+
+  user: UserItem!
+}
+
+type Configuration {
+  h: Int!
+
+  w: Int!
+
+  type: String!
+}
+
+type ComponentItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  configuration: Configuration!
+}
+
+type Component {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  configuration: Configuration!
+}
+
+type Position {
+  x: Int!
+
+  y: Int!
+}
+
+type PostOnFrontPageItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  postUid: UID!
+
+  frontPageUid: UID!
+
+  componentUid: UID!
+
+  position: Position!
+}
+
+type PostOnFrontPage {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  postUid: UID!
+
+  frontPageUid: UID!
+
+  componentUid: UID!
+
+  position: Position!
+
+  post: SimplePost!
+
+  component: ComponentItem!
+}
+
+type UserWithPassword {
+  user: UserItem!
+
+  password: String!
+}
+
+type CurrentUser {
+  uid: UID!
+
+  login: String!
+
+  profileUid: UID
+
+  profile: Profile
+
+  permissions: [String!]!
+
+  postsCount: Float!
+
+  commentsCount: Float!
+
+  registrationDate: String!
+}
+
+type ResetPasswordDto {
+  login: String!
+
+  password: String!
+}
+
+type Profile {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  fullName: String
+
+  publicName: String
+
+  email: String
+
+  avatarUrl: String
+
+  commentsCount: Float
+
+  user: User!
+}
+
+type CommentItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  content: String!
+
+  author: ProfileItem!
+
+  replyingToComment: CommentItem
+
+  authorUid: UID!
+
+  postUid: UID!
+
+  replyingToCommentUid: UID
+
+  status: String!
+}
+
+type CommentPagination {
+  count: Int!
+
+  pages: Int!
+
+  page: Int!
+
+  items: [CommentItem!]!
+}
+
+type FrontPageItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  title: String!
+
+  publicationDate: Date
+
+  endDate: Date
+}
+
+type FrontPagePagination {
+  count: Int!
+
+  pages: Int!
+
+  page: Int!
+
+  items: [FrontPageItem!]!
+}
+
+type FrontPage {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  title: String!
+
+  publicationDate: Date
+
+  endDate: Date
+
+  content: [PostOnFrontPage!]!
+}
+
+type GithubAuthor {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  usernameUrl: String!
+
+  avatarUrl: String
+
+  name: String
+
+  postsCount: Float!
+
+  user: User
+
+  posts: [Post!]
+}
+
+type PostInteractions {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  sharesCount: Int!
+
+  viewsCount: Int!
+}
+
+type TagItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  description: String!
+}
+
+type SimplePost {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  title: String!
+
+  readingTime: Int
+
+  previewUrl: String
+
+  content: String!
+
+  description: String!
+
+  status: String!
+}
+
+type Post {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  title: String!
+
+  readingTime: Int
+
+  previewUrl: String
+
+  content: String!
+
+  description: String!
+
+  status: String!
+
+  frontPages: [FrontPageItem!]!
+
+  tags: [TagItem!]
+
+  githubAuthor: GithubAuthor
+
+  interactions: PostInteractions!
+
+  comments: [CommentItem!]
+}
+
+type PostPagination {
+  count: Int!
+
+  pages: Int!
+
+  page: Int!
+
+  items: [Post!]!
+}
+
+type UserGroup {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  users: [User!]!
+
+  permissions: [Permission!]!
+}
+
+type ResponseStatus {
+  status: Float!
+}
+
+type TokenPayloadDto {
+  login: String!
+
+  email: String!
+
+  status: String!
+
+  permissions: [String!]!
+}
+
+type CategoryItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+}
+
+type Category {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  posts: [Post!]
+}
+
+type DataSourceItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  type: DataSourceType!
+
+  name: DataSourceName!
+
+  source: String!
+}
+
+enum DataSourceType {
+  Internal
+
+  External
+}
+
+enum DataSourceName {
+  Md
+}
+
+type DataSource {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  type: DataSourceType!
+
+  name: DataSourceName!
+
+  source: String!
+
+  posts: [Post!]
+
+  feeds: [Feed!]
+}
+
+type FeedItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  tags: [TagItem!]
+
+  status: FeedStatus
+}
+
+enum FeedStatus {
+  Private
+
+  Public
+
+  Hidden
+}
+
+type Feed {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  tags: [TagItem!]
+
+  status: FeedStatus
+
+  dataSources: [DataSource!]
+}
+
+type DraftItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  title: String!
+
+  description: String!
+
+  content: Content
+}
+
+"""
+Upload scalar
+"""
+scalar Content
+
+type DraftPagination {
+  count: Int!
+
+  pages: Int!
+
+  page: Int!
+
+  items: [DraftItem!]!
+}
+
+type PriorityItem {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  grade: Int!
+}
+
+type Priority {
+  uid: UID!
+
+  createdAt: Date!
+
+  updatedAt: Date!
+
+  name: String!
+
+  grade: Int!
+
+  posts: [Post!]
+}
+
+type Query {
+  profiles: [ProfileItem!]!
+
+  profile(uid: UID!): Profile!
+
+  users: [User!]!
+
+  user(uid: UID!): User!
+
+  currentUser: CurrentUser!
+
+  permissions: [PermissionItem!]!
+
+  userGroups: [UserGroup!]!
+
+  githubAuthors: [GithubAuthor!]!
+
+  githubAuthor(uid: UID!): GithubAuthor!
+
+  getTokenPayload: TokenPayloadDto!
+
+  currentTime: Date!
+
+  categories: [CategoryItem!]!
+
+  category(uid: UID!): Category!
+
+  components: [ComponentItem!]!
+
+  component(uid: UID!): Component!
+
+  comments(sort: SortCommentsArgs, filter: FilterCommentArgs, perPage: Int = 20, page: Int = 1): CommentPagination!
+
+  postsByFeed(perPage: Int = 20, page: Int = 1, uid: UID!): PostPagination!
+
+  posts(perPage: Int = 20, page: Int = 1): PostPagination!
+
+  post(uid: UID!): Post!
+
+  tags: [TagItem!]!
+
+  feeds(sort: SortFeedsArgs, filter: FilterFeedsArgs): [FeedItem!]!
+
+  feed(uid: UID!): FeedItem!
+
+  currentFrontPage: FrontPage!
+
+  sharedFrontPage(uid: UID!): FrontPage
+
+  frontPages(sort: SortFrontPageArgs, perPage: Int = 20, page: Int = 1, frontPageType: [FrontPageType!]): FrontPagePagination!
+
+  frontPage(uid: UID!): FrontPage!
+
+  dataSources: [DataSourceItem!]!
+
+  dataSource(uid: UID!): DataSource!
+
+  drafts(perPage: Int = 20, page: Int = 1): DraftPagination!
+
+  draft(uid: UID!): DraftItem!
+
+  priorities: [PriorityItem!]!
+
+  priority(uid: UID!): Priority!
+}
+
+input SortCommentsArgs {
+  byCreationDate: SortType
+}
+
+enum SortType {
+  asc
+
+  desc
+}
+
+input FilterCommentArgs {
+  postUid: UID
+
+  contains: String
+}
+
+input SortFeedsArgs {
+  byCreationDate: SortType
+
+  byUpdateDate: SortType
+
+  byName: SortType
+}
+
+input FilterFeedsArgs {
+  feedStatuses: [FeedStatus!]
+}
+
+input SortFrontPageArgs {
+  byPublicationDate: SortType
+
+  byCreationDate: SortType
+
+  byEndDate: SortType
+
+  byUpdateDate: SortType
+}
+
+enum FrontPageType {
+  Archive
+
+  Draft
+}
+
+type Mutation {
+  updateProfile(avatar: Upload, data: ProfileUpdateInput!, uid: UID!): ProfileItem!
+
+  removeProfile(uid: UID!): Int!
+
+  resetPasswordForUser(data: ResetPasswordInput!): ResetPasswordDto!
+
+  changePassword(data: ChangePasswordInput!): UserItem!
+
+  createUser(data: CreateUserInput!): UserWithPassword!
+
+  updateUser(data: UserInput!, uid: UID!): User!
+
+  removeUser(uid: UID!): Int!
+
+  banUser(uid: UID!): User!
+
+  unbanUser(uid: UID!): User!
+
+  createPermission(data: CreatePermissionInput!): PermissionItem!
+
+  removePermission(uid: UID!): Int!
+
+  assignGroupToUser(data: AssignUserGroupInput!): UserItem!
+
+  unAssignGroupToUser(data: AssignUserGroupInput!): UserGroupItem!
+
+  changePermissions(data: UserGroupInput!): UserGroupItem!
+
+  createUserGroup(data: UserGroupInput!): UserGroupItem!
+
+  removeUserGroup(uid: UID!): Int!
+
+  removeGithubAuthor(uid: UID!): Int!
+
+  signIn(data: SignInInput!): UserToken!
+
+  registration(password: String!, data: CreateUserInput!): UserToken!
+
+  signOut: ResponseStatus!
+
+  refreshToken: TokensDto!
+
+  createCategory(data: CreateCategoriesInput!): Category!
+
+  updateCategory(data: UpdateCategoriesInput!, uid: UID!): Int!
+
+  removeCategory(uid: UID!): Int!
+
+  createComponent(data: CreateComponentInput!): Component!
+
+  updateComponent(data: UpdateComponentInput!, uid: UID!): Component!
+
+  removeComponent(uid: UID!): Int!
+
+  createComment(data: CreateCommentInput!): CommentItem!
+
+  updateComment(data: UpdateCommentDto!, uid: UID!): CommentItem!
+
+  removeComment(uid: UID!): CommentItem!
+
+  createPost(data: CreatePostInput!): Post!
+
+  updatePost(updatePostDto: UpdatePostInput!, uid: UID!): Post!
+
+  removePost(uid: UID!): Post!
+
+  createFeed(data: CreateFeedInput!): FeedItem!
+
+  updateFeed(data: UpdateFeedInput!, uid: UID!): FeedItem!
+
+  removeFeed(uid: UID!): Int!
+
+  share(uid: UID!): PostInteractions!
+
+  view(uid: UID!): PostInteractions!
+
+  createFrontPage(data: CreateFrontPageInput!): FrontPage!
+
+  updateFrontPage(data: UpdateFrontPageInput!, uid: UID!): FrontPage!
+
+  publishFrontPage(uid: UID!): FrontPage!
+
+  shareFrontPage(uid: UID!): FrontPage!
+
+  removeFrontPage(uid: UID!): Int!
+
+  createDataSource(data: CreateDataSourceInput!): DataSource!
+
+  updateDataSource(data: UpdateDataSourceInput!, uid: UID!): DataSource!
+
+  removeDataSource(uid: UID!): Int!
+
+  createDraft(content: Upload, data: CreateDraftInput): DraftItem!
+
+  updateDraft(content: Upload, data: UpdateDraftInput!, uid: UID!): DraftItem!
+
+  removeDraft(uid: UID!): Int!
+
+  createPriority(data: CreatePrioritiesInput!): Priority!
+
+  updatePriority(data: UpdatePrioritiesInput!, uid: UID!): Priority!
+
+  removePriority(uid: UID!): Int!
+
+  changePostsOnFrontPage(data: [AddPostToFrontPageInput!]!, frontPageUid: UID!): [PostOnFrontPageItem!]!
+
+  setGithubPrivateToken(data: SetGithubPrivateTokenDto!): ResponseStatus!
+
+  downloadLabels(data: DownloadLabelsDto!): [TagItem!]!
+
+  downloadPosts(data: DownloadPostsDto!): [ResponseStatus!]!
+}
+
+"""
+Upload scalar
+"""
+scalar Upload
+
+input ProfileUpdateInput {
+  publicName: String
+}
+
+input ResetPasswordInput {
+  login: String!
+}
+
+input ChangePasswordInput {
+  password: String!
+
+  newPassword: String!
+}
+
+input CreateUserInput {
+  login: String!
+
+  email: String!
+
+  fullName: String!
+}
+
+input UserInput {
+  login: String!
+
+  password: String!
+}
+
+input CreatePermissionInput {
+  name: PermissionName!
+}
+
+input AssignUserGroupInput {
+  userUid: UID!
+
+  userGroupUid: UID!
+}
+
+input UserGroupInput {
+  name: String!
+
+  permissions: [PermissionName!]!
+}
+
+input SignInInput {
+  login: String!
+
+  password: String!
+}
+
+input CreateCategoriesInput {
+  name: String!
+}
+
+input UpdateCategoriesInput {
+  name: String!
+}
+
+input CreateComponentInput {
+  name: String!
+
+  configuration: ConfigurationInput!
+}
+
+input ConfigurationInput {
+  h: Int!
+
+  w: Int!
+
+  type: String!
+}
+
+input UpdateComponentInput {
+  name: String!
+
+  configuration: ConfigurationInput!
+}
+
+input CreateCommentInput {
+  content: String!
+
+  postUid: UID!
+
+  replyingToCommentUid: UID
+}
+
+input UpdateCommentDto {
+  content: String!
+}
+
+input CreatePostInput {
+  contentLink: String!
+}
+
+input UpdatePostInput {
+  title: String
+
+  description: String
+
+  previewUrl: String
+
+  content: String
+
+  tagUids: [UID!]
+
+  githubAuthorUid: String
+}
+
+input CreateFeedInput {
+  name: String!
+
+  tagUids: [String!]!
+
+  status: FeedStatus
+}
+
+input UpdateFeedInput {
+  name: String!
+
+  tagUids: [UID!]!
+}
+
+input CreateFrontPageInput {
+  title: String!
+}
+
+input UpdateFrontPageInput {
+  title: String!
+}
+
+input CreateDataSourceInput {
+  type: DataSourceType!
+
+  name: DataSourceName!
+
+  source: String!
+}
+
+input UpdateDataSourceInput {
+  type: DataSourceType!
+
+  name: DataSourceName!
+
+  source: String!
+}
+
+input CreateDraftInput {
+  title: String
+
+  description: String
+}
+
+input UpdateDraftInput {
+  title: String
+
+  description: String
+}
+
+input CreatePrioritiesInput {
+  name: String!
+
+  grade: Int!
+}
+
+input UpdatePrioritiesInput {
+  name: String!
+
+  grade: Int!
+}
+
+input AddPostToFrontPageInput {
+  postUid: String!
+
+  componentUid: UID!
+
+  position: PositionInput!
+}
+
+input PositionInput {
+  x: Int!
+
+  y: Int!
+}
+
+input SetGithubPrivateTokenDto {
+  token: String!
+
+  githubLogin: String!
+}
+
+input DownloadLabelsDto {
+  projectName: String!
+
+  repoName: String!
+}
+
+input DownloadPostsDto {
+  projectName: String!
+
+  repoName: String!
+
+  branchName: String!
+
+  githubAuthorUid: UID!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

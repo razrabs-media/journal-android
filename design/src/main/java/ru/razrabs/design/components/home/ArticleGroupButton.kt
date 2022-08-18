@@ -13,19 +13,14 @@ import androidx.compose.ui.unit.dp
 import ru.razrabs.design.subcomponents.common.ButtonWithoutPadding
 import ru.razrabs.design.subcomponents.common.cornerRadius0
 import ru.razrabs.design.subcomponents.common.zeroElevation
-import ru.razrabs.design.theming.background
-import ru.razrabs.design.theming.contrastPrimary
-import ru.razrabs.design.theming.secondary
-import ru.razrabs.design.theming.styreneBold
+import ru.razrabs.design.theming.*
 
 @Composable
 fun ArticleGroupButton(title: String, onClick: () -> Unit, active: Boolean) {
     val backgroundColor by animateColorAsState(
-        targetValue = if (active) secondary() else secondary().copy(
-            alpha = 0.6f
-        )
+        targetValue = if (active) secondary() else backgroundSecondary()
     )
-    val textColor by animateColorAsState(targetValue = if (active) background() else contrastPrimary())
+    val textColor by animateColorAsState(targetValue = if (active) background() else secondary())
     ButtonWithoutPadding(
         shape = cornerRadius0,
         onClick = onClick,
@@ -34,7 +29,7 @@ fun ArticleGroupButton(title: String, onClick: () -> Unit, active: Boolean) {
     ) {
         Text(
             text = title,
-            style = styreneBold(color = textColor, size = 12),
+            style = styreneBold(color = textColor, size = 12, letterSpacing = 1),
             modifier = Modifier.padding(8.dp)
         )
     }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import ru.razrabs.feature_home.presentation.HomeScreen
 
 @Composable
 fun SetupMainNavigation(
@@ -22,10 +23,9 @@ fun SetupMainNavigation(
     NavHost(
         navController = navController,
         startDestination = Screen.HomeScreen.route,
-//        startDestination = Screen.CommunityChooseUsername.route
     ) {
         composable(Screen.HomeScreen.route){
-
+            HomeScreen()
         }
     }
 }

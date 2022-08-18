@@ -2,10 +2,7 @@ package ru.razrabs.design.subcomponents.common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -36,7 +33,7 @@ fun ButtonWithoutPadding(
             onClick = { onClick() }, shape = shape, colors = ButtonDefaults.buttonColors(
                 backgroundColor = backgroundColor,
                 disabledBackgroundColor = backgroundColor
-            ), modifier = modifier,
+            ), modifier = modifier.wrapContentSize(),
             elevation = elevation,
             contentPadding = PaddingValues(0.dp),
             border = borderStroke,

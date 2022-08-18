@@ -20,7 +20,7 @@ val JbMono = FontFamily(
     Font(R.font.jbmono_regular, weight = FontWeight.Normal)
 )
 
-fun styreneBold(color: Color, size: Int, letterSpacing: Int = 1) =
+fun styreneBold(color: Color, size: Int, letterSpacing: Int = 0) =
     TextStyle(
         fontSize = size.sp,
         fontWeight = FontWeight.Bold,

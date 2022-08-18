@@ -19,7 +19,7 @@ fun UserNameButton(initials: String, onClick: () -> Unit) {
         elevation = zeroElevation(),
         backgroundColor = brand()
     ) {
-        Text(text = initials, style = styreneBold(color = logo(), size = 12))
+        Text(text = initials, style = styreneBold(color = logo(), size = 16))
     }
 }
 

@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "Razrabs"
+include ':app'
+include ':core'
+include ':feature_auth'
+include ':design'
+include ':feature_feed'
+include ':feature_comments'
+include ':network'
+include ':database'
+include ':feature_home'

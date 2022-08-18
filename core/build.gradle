@@ -37,7 +37,7 @@ android {
     }
 
     libraryVariants.all { variant ->
-        variant.sourceSets.java.each {
+        variant.sourceSets.kotlin.each {
             it.srcDirs += "build/generated/ksp/${variant.name}/kotlin"
         }
     }

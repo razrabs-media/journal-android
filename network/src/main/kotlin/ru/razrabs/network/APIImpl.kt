@@ -31,6 +31,7 @@ class APIImpl : API {
         val query = apolloClient.query(CurrentFrontPageQuery())
         val result = query.execute()
         return if (result.errors.isNullOrEmpty() && result.data != null) {
+            result.data
             Ok(Unit)
         } else {
             Err(RuntimeException())

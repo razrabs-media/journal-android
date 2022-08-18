@@ -1,0 +1,101 @@
+query GetFeeds {
+    feeds {
+        uid
+        name
+    }
+}
+
+query CurrentTime {
+    currentTime
+}
+
+query CurrentUser {
+    currentUser {
+        login
+        commentsCount
+        postsCount
+        profile {
+            avatarUrl
+            createdAt
+            fullName
+        }
+    }
+}
+
+
+query CurrentFrontPage {
+    currentFrontPage {
+        ...FrontPageResultPartial
+    }
+}
+
+
+query SharedFrontPage($uid: UID!) {
+    sharedFrontPage(uid: $uid) {
+        ...FrontPageResultPartial
+    }
+}
+
+query PostsByFeed($uid: UID!, $page: Int, $perPage: Int) {
+    postsByFeed(uid: $uid, page: $page, perPage: $perPage) {
+        items {
+            uid,
+            title,
+            previewUrl,
+            createdAt
+        }
+    }
+}
+
+query Comments($postUid: UID!, $perPage: Int! ) {
+    comments(filter: { postUid: $postUid }, perPage: $perPage){
+        items {
+            uid
+            author {
+                uid
+                avatarUrl
+                publicName
+            }
+            replyingToComment {
+                uid,
+                content
+            }
+            content
+            createdAt
+        }
+    }
+}
+
+query GetPost($uid: UID!) {
+    post(uid: $uid) {
+        uid
+        title
+        description
+        previewUrl
+        content
+        tags {
+            name
+        }
+        githubAuthor {
+            uid
+            name
+            usernameUrl
+            avatarUrl
+        }
+        createdAt
+        comments {
+            uid
+            author {
+                uid
+                avatarUrl
+                publicName
+            }
+            replyingToComment {
+                uid
+                content
+            }
+            content
+            createdAt
+        }
+    }
+}

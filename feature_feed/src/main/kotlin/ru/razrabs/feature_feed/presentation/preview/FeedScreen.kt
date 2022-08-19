@@ -1,4 +1,4 @@
-package ru.razrabs.feature_feed.presentation
+package ru.razrabs.feature_feed.presentation.preview
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

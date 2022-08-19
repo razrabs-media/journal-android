@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import ru.razrabs.design.components.home.Footer
 import ru.razrabs.design.components.home.HomeAppBar
+import ru.razrabs.design.theming.background
 import ru.razrabs.feature_feed.presentation.preview.FeedScreen
 
 @Composable
@@ -14,9 +15,11 @@ fun HomeScreen() {
 
 @Composable
 fun HomeContent() {
-    Scaffold(topBar = {
-        HomeAppBar()
-    }) {
+    Scaffold(
+        backgroundColor = background(),
+        topBar = {
+            HomeAppBar()
+        }) {
         FeedScreen(footer = { Footer() })
     }
 }

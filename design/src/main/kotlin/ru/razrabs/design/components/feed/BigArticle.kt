@@ -22,14 +22,12 @@ import ru.razrabs.design.theming.secondary
 import ru.razrabs.design.theming.styreneBold
 
 @Composable
-fun BigArticle(title: String, url: String, date: String, onClick: () -> Unit) {
+fun BigArticle(title: String, url: String, date: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     ButtonWithoutPadding(
         shape = cornerRadius0,
         onClick = onClick,
         elevation = zeroElevation(),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 0.dp)
+        modifier = modifier
     ) {
         Column(
             modifier = Modifier

@@ -76,10 +76,10 @@ fun FeedContent(
 
             items(state.frontPage?.content ?: listOf(), key = { it.uid }) {
                 BigArticle(
-                    modifier = Modifier.padding(top = 16.dp),
                     title = it.post.title,
                     url = it.post.previewUrl ?: "",
-                    date = ctx.parseDate(it.post.createdAt)
+                    date = ctx.parseDate(it.post.createdAt),
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     openDetail(it.post.uid)
                 }

@@ -13,7 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mukesh.MarkDown
 import org.koin.androidx.compose.getViewModel
+import ru.razrabs.core.ext.parseDate
 import ru.razrabs.design.components.feed.BigArticle
+import ru.razrabs.design.components.feed.BigArticleContent
 import ru.razrabs.design.theming.secondary
 import ru.razrabs.design.theming.secondary60
 import java.net.URL
@@ -35,15 +37,18 @@ fun DetailContent(state: DetailViewModel.State) {
     if (post != null) {
         LazyColumn() {
             item {
-                BigArticle(title = post.title, url = post.previewUrl ?: "", date = post.createdAt) {
-
-                }
+                BigArticleContent(
+                    modifier = Modifier.padding(horizontal = 8.dp),
+                    title = post.title,
+                    url = post.previewUrl ?: "",
+                    date = ctx.parseDate(post.createdAt)
+                )
             }
             item {
                 MarkDown(
                     text = post.content,
                     modifier = Modifier
-                        .background(secondary())
+                        .padding(horizontal = 8.dp)
                 )
             }
         }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="days">
+        <item quantity="one">ВЧЕРА</item>
+        <item quantity="two">%1$d ДНЯ НАЗАД</item>
+        <item quantity="few">%1$d ДНЯ НАЗАД</item>
+        <item quantity="other">%1$d ДНЕЙ НАЗАД</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">ЧАС НАЗАД</item>
+        <item quantity="two">%1$d ЧАСА НАЗАД</item>
+        <item quantity="few">%1$d ЧАСА НАЗАД</item>
+        <item quantity="other">%1$d ЧАСОВ НАЗАД</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">МИНУТУ НАЗАД</item>
+        <item quantity="two">%1$d МИНУТЫ НАЗАД</item>
+        <item quantity="few">%1$d МИНУТЫ НАЗАД</item>
+        <item quantity="other">%1$d МИНУТ НАЗАД</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">СЕКУНДУ НАЗАД</item>
+        <item quantity="two">%1$d СЕКУНДЫ НАЗАД</item>
+        <item quantity="few">%1$d СЕКУНДЫ НАЗАД</item>
+        <item quantity="other">%1$d СЕКУНД НАЗАД</item>
+    </plurals>
+</resources>

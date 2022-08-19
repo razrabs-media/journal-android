@@ -11,7 +11,7 @@ data class Post(
     val content: String,
     val tags: List<Tag>?,
     val githubAuthor: GithubAuthor?,
-    val createdAt: Any,
+    val createdAt: String,
     val comments: List<Comment>?,
 )
 

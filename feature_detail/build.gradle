@@ -5,12 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.razrabs.feature_feed'
+    namespace 'ru.razrabs.feature_detail'
 }
 
 apply from: '../base.gradle'
 
 dependencies {
     implementation(project(":design"))
-    implementation(project(":markdownview"))
 }

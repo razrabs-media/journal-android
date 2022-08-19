@@ -125,6 +125,9 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
     ksp "io.insert-koin:koin-ksp-compiler:$koin_ksp_version"
 
+    implementation("dev.shreyaspatil.mutekt:mutekt-core:$mutektVersion")
+    ksp("dev.shreyaspatil.mutekt:mutekt-codegen:$mutektVersion")
+
     debugImplementation "androidx.customview:customview:1.1.0"
     debugImplementation "androidx.customview:customview-poolingcontainer:1.0.0"
 

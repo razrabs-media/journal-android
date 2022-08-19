@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 rootProject.name = "Razrabs"
@@ -22,3 +23,5 @@ include ':feature_comments'
 include ':network'
 include ':database'
 include ':feature_home'
+include ':feature_detail'
+include ':markdownview'

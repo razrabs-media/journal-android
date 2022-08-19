@@ -34,38 +34,47 @@ fun BigArticle(
     ButtonWithoutPadding(
         shape = cornerRadius0,
         onClick = onClick,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp),
         elevation = zeroElevation(),
         backgroundColor = background()
     ) {
-        Column(
-            modifier = modifier
+        BigArticleContent(title = title, url = url, date = date)
+    }
+}
+
+@Composable
+fun BigArticleContent(
+    modifier: Modifier = Modifier,
+    title: String,
+    url: String,
+    date: String,
+) {
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(url)
+                .crossfade(true)
+                .memoryCacheKey(url)
+                .memoryCachePolicy(CachePolicy.ENABLED)
+                .diskCachePolicy(CachePolicy.ENABLED)
+                .diskCacheKey(url)
+                .scale(Scale.FILL)
+                .build(),
+            contentDescription = title,
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
                 .fillMaxWidth()
-        ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(url)
-                    .crossfade(true)
-                    .memoryCacheKey(url)
-                    .memoryCachePolicy(CachePolicy.ENABLED)
-                    .diskCachePolicy(CachePolicy.ENABLED)
-                    .diskCacheKey(url)
-                    .scale(Scale.FILL)
-                    .build(),
-                contentDescription = title,
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-            VerticalSpacer(height = 8)
-            Text(text = title, style = styreneBold(color = logo(), size = 16, letterSpacing = 0))
-            VerticalSpacer(height = 4)
-            Text(
-                text = date,
-                style = styreneBold(color = secondary(), size = 10, letterSpacing = 1)
-            )
-        }
+        )
+        VerticalSpacer(height = 8)
+        Text(text = title, style = styreneBold(color = logo(), size = 16, letterSpacing = 0))
+        VerticalSpacer(height = 4)
+        Text(
+            text = date,
+            style = styreneBold(color = secondary(), size = 10, letterSpacing = 1)
+        )
     }
 }

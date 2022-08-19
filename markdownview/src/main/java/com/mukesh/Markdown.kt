@@ -1,7 +1,9 @@
 package com.mukesh
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.util.Base64
 import android.util.Log
@@ -43,7 +45,6 @@ fun MarkDown(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
-            setBackgroundColor(Color.BLUE)
             webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     view?.evaluateJavascript(previewText, null)
@@ -60,12 +61,17 @@ fun MarkDown(
                     return false
                 }
             }
-            loadUrl("file:///android_asset/html/preview.html")
+            loadUrl(if (isDarkTheme(context)) "file:///android_asset/html/preview-night.html" else "file:///android_asset/html/preview.html")
             @SuppressLint("SetJavaScriptEnabled")
             settings.javaScriptEnabled = true
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
     }, modifier = modifier)
+}
+
+fun isDarkTheme(context: Context): Boolean {
+    return context.resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }
 
 /**

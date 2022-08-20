@@ -12,7 +12,7 @@ data class Post(
     val tags: List<Tag>?,
     val githubAuthor: GithubAuthor?,
     val createdAt: String,
-    val comments: List<Comment>?,
+    val comments: List<Comment>,
 )
 
 data class Tag(
@@ -79,5 +79,5 @@ fun GetPostQuery.Data.map() = Post(
     },
     githubAuthor = post.githubAuthor?.map(),
     createdAt = post.createdAt.toString(),
-    comments = post.comments?.map { it.map() }
+    comments = post.comments?.map { it.map() } ?: listOf()
 )

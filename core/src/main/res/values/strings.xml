@@ -8,4 +8,7 @@
     <string name="yt">YT</string>
     <string name="tg">TG</string>
     <string name="tw">TW</string>
+    <string name="share">ПОДЕЛИТЬСЯ</string>
+    <string name="comment_count">КОММЕНТЫ: %1$d</string>
+    <string name="login_via_github">ЗАЛОГИНИТЬСЯ ЧЕРЕЗ GITHUB</string>
 </resources>

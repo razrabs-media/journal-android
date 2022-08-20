@@ -37,12 +37,13 @@ fun styreneMedium(color: Color, size: Int) =
         fontFamily = Styrene
     )
 
-fun styreneRegular(color: Color, size: Int) =
+fun styreneRegular(color: Color, size: Int, letterSpacing: Int = 0) =
     TextStyle(
         fontSize = size.sp,
         fontWeight = FontWeight.Normal,
         color = color,
-        fontFamily = Styrene
+        fontFamily = Styrene,
+        letterSpacing = letterSpacing.sp
     )
 
 fun jbBold(color: Color, size: Int) =

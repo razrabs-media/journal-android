@@ -62,13 +62,13 @@ fun FeedContent(
                     contentPadding = PaddingValues(horizontal = 8.dp)
                 ) {
                     item {
-                        ArticleGroupButton(title = "ВСЕ ПОДРЯД", onClick = { }, active = false)
+                        ArticleGroupButton(title = "ВСЕ ПОДРЯД", onClick = { }, active = false, clickable = true)
                     }
                     item {
-                        ArticleGroupButton(title = "ОТ РЕДАКЦИИ", onClick = { }, active = false)
+                        ArticleGroupButton(title = "ОТ РЕДАКЦИИ", onClick = { }, active = false, clickable = true)
                     }
                     item {
-                        ArticleGroupButton(title = "МНЕНИЯ", onClick = { }, active = false)
+                        ArticleGroupButton(title = "МНЕНИЯ", onClick = { }, active = false, clickable = true)
                     }
                 }
             }

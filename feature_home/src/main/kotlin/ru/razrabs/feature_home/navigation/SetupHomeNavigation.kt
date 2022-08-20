@@ -18,32 +18,16 @@ fun SetupHomeNavigation(navController: NavHostController) {
     AnimatedNavHost(navController = navController, startDestination = HomeScreen.FeedScreen.route) {
         composable(HomeScreen.FeedScreen.route,
             enterTransition = {
-                when (initialState.destination.route) {
-                    HomeScreen.DetailScreen.route ->
-                        slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
-                    else -> null
-                }
+                slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
             },
             exitTransition = {
-                when (targetState.destination.route) {
-                    HomeScreen.DetailScreen.route ->
-                        slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
-                    else -> null
-                }
+                slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
             },
             popEnterTransition = {
-                when (initialState.destination.route) {
-                    HomeScreen.DetailScreen.route ->
-                        slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
-                    else -> null
-                }
+                slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
             },
             popExitTransition = {
-                when (targetState.destination.route) {
-                    HomeScreen.DetailScreen.route ->
-                        slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
-                    else -> null
-                }
+                slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
             }) {
             FeedScreen(
                 footer = { Footer() },
@@ -51,32 +35,16 @@ fun SetupHomeNavigation(navController: NavHostController) {
         }
         composable(HomeScreen.DetailScreen.route,
             enterTransition = {
-                when (initialState.destination.route) {
-                    HomeScreen.FeedScreen.route ->
-                        slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
-                    else -> null
-                }
+                slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
             },
             exitTransition = {
-                when (targetState.destination.route) {
-                    HomeScreen.FeedScreen.route ->
-                        slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
-                    else -> null
-                }
+                slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
             },
             popEnterTransition = {
-                when (initialState.destination.route) {
-                    HomeScreen.FeedScreen.route ->
-                        slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
-                    else -> null
-                }
+                slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
             },
             popExitTransition = {
-                when (targetState.destination.route) {
-                    HomeScreen.FeedScreen.route ->
-                        slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
-                    else -> null
-                }
+                slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
             }) {
             it.arguments?.getString(UID)?.let {
                 DetailScreen(postUid = it)

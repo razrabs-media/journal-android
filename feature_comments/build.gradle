@@ -12,4 +12,5 @@ apply from: '../base.gradle'
 
 dependencies {
     implementation(project(":design"))
+    implementation(project(":feature_feed"))
 }

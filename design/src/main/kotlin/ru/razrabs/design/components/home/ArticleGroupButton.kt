@@ -16,7 +16,7 @@ import ru.razrabs.design.subcomponents.common.zeroElevation
 import ru.razrabs.design.theming.*
 
 @Composable
-fun ArticleGroupButton(title: String, onClick: () -> Unit, active: Boolean) {
+fun ArticleGroupButton(title: String, onClick: () -> Unit, active: Boolean, clickable: Boolean) {
     val backgroundColor by animateColorAsState(
         targetValue = if (active) secondary() else backgroundSecondary()
     )
@@ -25,7 +25,8 @@ fun ArticleGroupButton(title: String, onClick: () -> Unit, active: Boolean) {
         shape = cornerRadius0,
         onClick = onClick,
         backgroundColor = backgroundColor,
-        elevation = zeroElevation()
+        elevation = zeroElevation(),
+        active = clickable
     ) {
         Text(
             text = title,
@@ -52,5 +53,10 @@ class ArticleGroupButtonPayloadProvider :
 @Preview
 @Composable
 fun PreviewArticleGroupButton(@PreviewParameter(ArticleGroupButtonPayloadProvider::class) payload: ArticleGroupButtonPayload) {
-    ArticleGroupButton(title = payload.title, onClick = {}, active = payload.active)
+    ArticleGroupButton(
+        title = payload.title,
+        onClick = {},
+        active = payload.active,
+        clickable = true
+    )
 }

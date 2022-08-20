@@ -74,7 +74,7 @@ fun BigArticleContent(
         VerticalSpacer(height = 4)
         Text(
             text = date,
-            style = styreneBold(color = secondary(), size = 10, letterSpacing = 1)
+            style = styreneBold(color = secondary(), size = 14, letterSpacing = 1)
         )
     }
 }

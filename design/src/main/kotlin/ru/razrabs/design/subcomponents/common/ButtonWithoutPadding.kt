@@ -17,7 +17,7 @@ import ru.razrabs.design.theming.background
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ButtonWithoutPadding(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.wrapContentSize(),
     shape: CornerBasedShape,
     backgroundColor: Color = background(),
     elevation: ButtonElevation = ButtonDefaults.elevation(),
@@ -33,7 +33,7 @@ fun ButtonWithoutPadding(
             onClick = { onClick() }, shape = shape, colors = ButtonDefaults.buttonColors(
                 backgroundColor = backgroundColor,
                 disabledBackgroundColor = backgroundColor
-            ), modifier = modifier.wrapContentSize(),
+            ), modifier = modifier,
             elevation = elevation,
             contentPadding = PaddingValues(0.dp),
             border = borderStroke,

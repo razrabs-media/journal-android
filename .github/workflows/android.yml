@@ -19,8 +19,9 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: gradle
-    - name: Build all artifacts
-      id: buildAllApks
+        
+    - name: Build release artifact
+      id: buildRelease
       uses: eskatos/gradle-command-action@v1.3.3
       with:
         gradle-version: current
@@ -34,6 +35,26 @@ jobs:
       with:
         name: Release apk
         path: app/build/outputs/apk/release/*.apk
+        
+    - name: Clean project
+      id: clean
+      uses: eskatos/gradle-command-action@v1.3.3
+      with:
+        gradle-version: current
+        wrapper-cache-enabled: true
+        dependencies-cache-enabled: true
+        configuration-cache-enabled: true
+        arguments: clean
+        
+    - name: Build release artifact
+      id: buildDebug
+      uses: eskatos/gradle-command-action@v1.3.3
+      with:
+        gradle-version: current
+        wrapper-cache-enabled: true
+        dependencies-cache-enabled: true
+        configuration-cache-enabled: true
+        arguments: assembleDebug
         
     - name: Upload debug APK
       uses: actions/upload-artifact@v2.2.0

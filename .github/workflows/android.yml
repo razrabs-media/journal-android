@@ -29,8 +29,14 @@ jobs:
         configuration-cache-enabled: true
         arguments: assembleRelease
         
-    - name: Upload our APK
+    - name: Upload release APK
       uses: actions/upload-artifact@v2.2.0
       with:
-        name: Release artifact
+        name: Release apk
         path: app/build/outputs/apk/release/*.apk
+        
+    - name: Upload debug APK
+      uses: actions/upload-artifact@v2.2.0
+      with:
+        name: Release apk
+        path: app/build/outputs/apk/debug/*.apk

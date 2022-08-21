@@ -35,42 +35,42 @@ class CommentViewModel(
         fun getTestList() = listOf(
             Comment(
                 "asdasd",
-                Author("asd", "asd", "Test1"),
+                Author("asd", "https://avatars.githubusercontent.com/philippranzhin", "Test1"),
                 null,
                 "Ой как приятно видеть на своём ресурсе технические статьи, словами не передать",
                 "1 д"
             ),
             Comment(
                 "asdasd1",
-                Author("asd", "asd", "Test1"),
+                Author("asd", "https://avatars.githubusercontent.com/philippranzhin", "Test1"),
                 null,
                 "Ой как приятно видеть на своём ресурсе технические статьи, словами не передать",
                 "1 д"
             ),
             Comment(
                 "asdasd2",
-                Author("asd", "asd", "Test1"),
+                Author("asd", "https://avatars.githubusercontent.com/philippranzhin", "Test1"),
                 null,
                 "Ой как приятно видеть на своём ресурсе технические статьи, словами не передать",
                 "1 д"
             ),
             Comment(
                 "asdasd3",
-                Author("asd", "asd", "Test1"),
+                Author("asd", "https://avatars.githubusercontent.com/philippranzhin", "Test1"),
                 null,
                 "Ой как приятно видеть на своём ресурсе технические статьи, словами не передать",
                 "1 д"
             ),
             Comment(
                 "asdasd4",
-                Author("asd", "asd", "Test1"),
+                Author("asd", "https://avatars.githubusercontent.com/philippranzhin", "Test1"),
                 null,
                 "Ой как приятно видеть на своём ресурсе технические статьи, словами не передать",
                 "1 д"
             ),
             Comment(
                 "asdasd5",
-                Author("asd", "asd", "Test1"),
+                Author("asd", "https://avatars.githubusercontent.com/philippranzhin", "Test1"),
                 null,
                 "Ой как приятно видеть на своём ресурсе технические статьи, словами не передать",
                 "1 д"

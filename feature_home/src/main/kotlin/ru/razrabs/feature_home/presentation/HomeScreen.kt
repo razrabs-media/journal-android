@@ -14,23 +14,23 @@ import ru.razrabs.feature_feed.presentation.preview.FeedScreen
 import ru.razrabs.feature_home.navigation.SetupHomeNavigation
 
 @Composable
-fun HomeScreen() {
-    HomeContent()
+fun HomeScreen(onCommentsClicked: (String) -> Unit) {
+    HomeContent(onCommentsClicked = onCommentsClicked)
 }
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun HomeContent() {
+fun HomeContent(onCommentsClicked: (String) -> Unit) {
     Scaffold(topBar = {
         HomeAppBar()
     }, backgroundColor = background()) {
         val navController = rememberAnimatedNavController()
-        SetupHomeNavigation(navController)
+        SetupHomeNavigation(navController, onCommentsClicked = onCommentsClicked)
     }
 }
 
 @Preview
 @Composable
 fun PreviewHome() {
-    HomeContent()
+    HomeContent() {}
 }

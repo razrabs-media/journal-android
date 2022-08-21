@@ -9,25 +9,38 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import ru.razrabs.design.components.home.Footer
+import ru.razrabs.feature_comments.presentation.CommentScreen
 import ru.razrabs.feature_feed.presentation.detail.DetailScreen
 import ru.razrabs.feature_feed.presentation.preview.FeedScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun SetupHomeNavigation(navController: NavHostController) {
+fun SetupHomeNavigation(navController: NavHostController, onCommentsClicked: (String) -> Unit) {
     AnimatedNavHost(navController = navController, startDestination = HomeScreen.FeedScreen.route) {
         composable(HomeScreen.FeedScreen.route,
             enterTransition = {
-                slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                slideIntoContainer(
+                    AnimatedContentScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
             },
             exitTransition = {
-                slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                slideOutOfContainer(
+                    AnimatedContentScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
             },
             popEnterTransition = {
-                slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                slideIntoContainer(
+                    AnimatedContentScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
             },
             popExitTransition = {
-                slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                slideOutOfContainer(
+                    AnimatedContentScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
             }) {
             FeedScreen(
                 footer = { Footer() },
@@ -35,19 +48,33 @@ fun SetupHomeNavigation(navController: NavHostController) {
         }
         composable(HomeScreen.DetailScreen.route,
             enterTransition = {
-                slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                slideIntoContainer(
+                    AnimatedContentScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
             },
             exitTransition = {
-                slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                slideOutOfContainer(
+                    AnimatedContentScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
             },
             popEnterTransition = {
-                slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                slideIntoContainer(
+                    AnimatedContentScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
             },
             popExitTransition = {
-                slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                slideOutOfContainer(
+                    AnimatedContentScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
             }) {
-            it.arguments?.getString(UID)?.let {
-                DetailScreen(postUid = it)
+            it.arguments?.getString(UID)?.let { postUid ->
+                DetailScreen(postUid = postUid, onCommentsClicked = {
+                    onCommentsClicked(postUid)
+                })
             }
         }
     }

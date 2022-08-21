@@ -14,9 +14,7 @@ import androidx.compose.ui.unit.dp
 import ru.razrabs.design.R
 import ru.razrabs.design.subcomponents.common.ButtonWithoutPadding
 import ru.razrabs.design.subcomponents.common.cornerRadius0
-import ru.razrabs.design.theming.logo
-import ru.razrabs.design.theming.secondary
-import ru.razrabs.design.theming.styreneRegular
+import ru.razrabs.design.theming.*
 
 @Composable
 fun CommentBottomBar(
@@ -31,7 +29,7 @@ fun CommentBottomBar(
         ButtonWithoutPadding(
             shape = cornerRadius0,
             onClick = { },
-            backgroundColor = secondary(),
+            backgroundColor = contrastSecondary(),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(80.dp),
@@ -39,7 +37,7 @@ fun CommentBottomBar(
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.CenterStart){
                 Text(
                     text = stringResource(id = ru.razrabs.core.R.string.login_via_github),
-                    style = styreneRegular(color = logo(), size = 16),
+                    style = styreneRegular(color = primary (), size = 16),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
             }

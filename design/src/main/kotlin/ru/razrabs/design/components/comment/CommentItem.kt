@@ -6,8 +6,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import ru.razrabs.design.HorizontalSpacer
 import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.subcomponents.common.ButtonWithoutPadding
@@ -20,13 +25,29 @@ import ru.razrabs.design.theming.styreneRegular
 import ru.razrabs.graphql.type.CommentItem
 
 @Composable
-fun CommentItem(username: String, createdAt: String, content: String, onClick: () -> Unit) {
+fun CommentItem(
+    username: String,
+    createdAt: String,
+    content: String,
+    avatar: String?,
+    onClick: () -> Unit
+) {
     ButtonWithoutPadding(shape = cornerRadius0, onClick = onClick, elevation = zeroElevation()) {
-        Row(modifier = Modifier.padding(16.dp)) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(brand())
+        Row(modifier = Modifier.padding(horizontal = 8.dp, vertical = 16.dp)) {
+            AsyncImage(
+                contentDescription = "",
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(avatar)
+                    .diskCacheKey(avatar)
+                    .diskCachePolicy(CachePolicy.ENABLED)
+                    .memoryCacheKey(avatar)
+                    .memoryCachePolicy(CachePolicy.ENABLED)
+                    .crossfade(true)
+                    .build(),
+                contentScale = ContentScale.FillBounds,
+                onError = {
+                },
+                modifier = Modifier.size(40.dp)
             )
             HorizontalSpacer(width = 8)
             Column(modifier = Modifier.weight(1f)) {
@@ -52,6 +73,7 @@ fun CommentItem(username: String, createdAt: String, content: String, onClick: (
 @Composable
 fun PreviewCommentItem() {
     CommentItem(
+        avatar = null,
         username = "PHILIPP RANZHIN",
         createdAt = "1 Д",
         content = "Ой как приятно видеть на своём ресурсе технические статьи, словами не передать"

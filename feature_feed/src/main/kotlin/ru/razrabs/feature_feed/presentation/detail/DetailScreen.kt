@@ -28,12 +28,16 @@ import ru.razrabs.design.theming.styreneRegular
 import java.net.URL
 
 @Composable
-fun DetailScreen(postUid: String, vm: DetailViewModel = getViewModel()) {
+fun DetailScreen(
+    postUid: String,
+    vm: DetailViewModel = getViewModel(),
+    onCommentsClicked: () -> Unit
+) {
     LaunchedEffect(postUid) {
         vm.populateState(postUid)
     }
     val state = vm.state.uiState.collectAsState().value
-    DetailContent(state)
+    DetailContent(state, onCommentsClicked = onCommentsClicked)
 }
 
 fun Context.shareLink(link: String) {
@@ -45,7 +49,7 @@ fun Context.shareLink(link: String) {
 }
 
 @Composable
-fun DetailContent(state: DetailViewModel.State) {
+fun DetailContent(state: DetailViewModel.State, onCommentsClicked: () -> Unit) {
     val post = state.post
     val ctx = LocalContext.current
 
@@ -70,9 +74,8 @@ fun DetailContent(state: DetailViewModel.State) {
                 PostInfoBlock(
                     tags = post.tags?.map { it.name } ?: listOf(),
                     commentCount = post.comments.size,
-                    onCommentsClicked = {
-
-                    }, onShareClicked = {
+                    onCommentsClicked = onCommentsClicked,
+                    onShareClicked = {
                         ctx.shareLink(link = "$POST_PREFIX${post.uid}")
                     })
             }

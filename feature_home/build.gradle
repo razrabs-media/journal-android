@@ -14,4 +14,5 @@ dependencies {
     implementation(project(":design"))
     implementation(project(":network"))
     implementation(project(":feature_feed"))
+    implementation(project(":feature_comments"))
 }

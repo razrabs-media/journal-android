@@ -26,7 +26,6 @@ fun CommentScreen(vm: CommentViewModel = getViewModel(), onBackAction: () -> Uni
 
 @Composable
 fun CommentContent(state: CommentViewModel.State, onBackAction: () -> Unit) {
-    val ctx = LocalContext.current
     Scaffold(topBar = {
         CommentTopBar(commentCount = 4, onBackAction = onBackAction, title = "Test uid")
     }, bottomBar = {
@@ -37,14 +36,19 @@ fun CommentContent(state: CommentViewModel.State, onBackAction: () -> Unit) {
                 CommentItem(
                     username = it.author.name ?: "",
                     createdAt = it.createdAt,
-                    content = it.content
+                    content = it.content,
+                    avatar = it.author.avatarUrl
                 ) {
 
                 }
             }
-            item { Box(modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)) }
+            item {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp)
+                )
+            }
         }
     }
 }

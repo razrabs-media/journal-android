@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import ru.razrabs.design.R
+import ru.razrabs.design.components.common.LoginViaGithubButton
 import ru.razrabs.design.subcomponents.common.ButtonWithoutPadding
 import ru.razrabs.design.subcomponents.common.cornerRadius0
 import ru.razrabs.design.theming.*
@@ -26,22 +27,7 @@ fun CommentBottomBar(
     if (loggedIn) {
 
     } else {
-        ButtonWithoutPadding(
-            shape = cornerRadius0,
-            onClick = { },
-            backgroundColor = contrastSecondary(),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp),
-        ) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.CenterStart){
-                Text(
-                    text = stringResource(id = ru.razrabs.core.R.string.login_via_github),
-                    style = styreneRegular(color = primary (), size = 16),
-                    modifier = Modifier.padding(horizontal = 8.dp)
-                )
-            }
-        }
+        LoginViaGithubButton(onClick = onLogin)
     }
 }
 

@@ -11,4 +11,7 @@
     <string name="share">ПОДЕЛИТЬСЯ</string>
     <string name="comment_count">КОММЕНТЫ: %1$d</string>
     <string name="login_via_github">ЗАЛОГИНИТЬСЯ ЧЕРЕЗ GITHUB</string>
+    <string name="acc">АКК</string>
+    <string name="we_login_via_github">МЫ ЛОГИНИМ ЧЕРЕЗ ГИТХАБ</string>
+    <string name="after_login">После логина появится возможность комментировать материалы. А дальше мы придумаем, какие возможности появятся у залогированного читателя</string>
 </resources>

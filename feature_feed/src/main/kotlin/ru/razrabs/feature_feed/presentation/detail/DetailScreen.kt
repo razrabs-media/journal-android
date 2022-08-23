@@ -31,8 +31,7 @@ import java.net.URL
 fun DetailScreen(
     postUid: String,
     vm: DetailViewModel = getViewModel(),
-    onCommentsClicked: (Pair<String, String>) -> Unit,
-    onBackAction: () -> Unit
+    onCommentsClicked: (Pair<String, String>) -> Unit
 ) {
     LaunchedEffect(postUid) {
         vm.populateState(postUid)

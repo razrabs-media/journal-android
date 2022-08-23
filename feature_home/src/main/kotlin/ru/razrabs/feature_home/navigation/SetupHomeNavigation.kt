@@ -78,7 +78,7 @@ fun SetupHomeNavigation(
             it.arguments?.getString(UID)?.let { postUid ->
                 DetailScreen(postUid = postUid, onCommentsClicked = {
                     onCommentsClicked(it)
-                }, onBackAction = onBackAction)
+                })
             }
         }
     }

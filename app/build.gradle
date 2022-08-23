@@ -67,6 +67,7 @@ dependencies {
     implementation project(":feature_comments")
     implementation project(":feature_feed")
     implementation project(":feature_home")
+    implementation project(":feature_profile")
     implementation project(":network")
 
     // Koin Core features

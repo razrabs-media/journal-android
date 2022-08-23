@@ -14,4 +14,5 @@
     <string name="acc">АКК</string>
     <string name="we_login_via_github">МЫ ЛОГИНИМ ЧЕРЕЗ ГИТХАБ</string>
     <string name="after_login">После логина появится возможность комментировать материалы. А дальше мы придумаем, какие возможности появятся у залогированного читателя</string>
+    <string name="log_out">РАЗЛОГИНИТЬСЯ</string>
 </resources>

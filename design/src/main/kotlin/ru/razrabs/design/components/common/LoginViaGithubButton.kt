@@ -15,7 +15,10 @@ import ru.razrabs.design.theming.primary
 import ru.razrabs.design.theming.styreneRegular
 
 @Composable
-fun LoginViaGithubButton(onClick: () -> Unit) {
+fun LoginViaGithubButton(
+    text: String = stringResource(id = R.string.login_via_github),
+    onClick: () -> Unit
+) {
     ButtonWithoutPadding(
         shape = cornerRadius0,
         onClick = onClick,
@@ -26,7 +29,7 @@ fun LoginViaGithubButton(onClick: () -> Unit) {
     ) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.CenterStart) {
             Text(
-                text = stringResource(id = R.string.login_via_github),
+                text = text,
                 style = styreneRegular(color = primary(), size = 16),
                 modifier = Modifier.padding(horizontal = 8.dp)
             )

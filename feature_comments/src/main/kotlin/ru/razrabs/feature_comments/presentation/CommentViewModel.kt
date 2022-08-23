@@ -1,5 +1,6 @@
 package ru.razrabs.feature_comments.presentation
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import org.koin.android.annotation.KoinViewModel
 import ru.razrabs.core.UiStateFlow
@@ -41,6 +42,7 @@ class CommentViewModel(
             }
         }
 
+    @Stable
     data class State(val comments: List<Item>, val name: String = "")
 
     companion object {

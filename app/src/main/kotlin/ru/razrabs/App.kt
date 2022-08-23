@@ -6,6 +6,7 @@ import org.koin.core.context.startKoin
 import org.koin.ksp.generated.CommentModuleModule
 import org.koin.ksp.generated.FeedModuleModule
 import org.koin.ksp.generated.NetworkModuleModule
+import org.koin.ksp.generated.ProfileModuleModule
 
 class App: Application() {
 
@@ -17,7 +18,8 @@ class App: Application() {
             modules(
                 NetworkModuleModule,
                 FeedModuleModule,
-                CommentModuleModule
+                CommentModuleModule,
+                ProfileModuleModule
             )
         }
     }

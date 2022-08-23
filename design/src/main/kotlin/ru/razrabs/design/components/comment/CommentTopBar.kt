@@ -32,7 +32,7 @@ fun CommentTopBar(commentCount: Int, onBackAction: () -> Unit, title: String) {
         )
         HorizontalSpacer(width = 8)
         Text(
-            text = title,
+            text = title.uppercase(),
             modifier = Modifier.weight(1f),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,

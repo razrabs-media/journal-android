@@ -1,5 +1,6 @@
 package ru.razrabs
 
+import ru.razrabs.feature_home.navigation.ARTICLE_NAME
 import ru.razrabs.feature_home.navigation.HomeScreen
 import ru.razrabs.feature_home.navigation.UID
 
@@ -14,10 +15,11 @@ sealed class Screen(
         }
 
     object HomeScreen : Screen("home")
-    object CommentScreen : Screen("comment", "/{$UID}")
+    object CommentScreen : Screen("comment", "/{$UID}/{$ARTICLE_NAME}")
 
 }
 
 fun Screen.CommentScreen.buildRoute(
-    uid: String
-): String = "${routeBody}/$uid"
+    uid: String,
+    name: String
+): String = "${routeBody}/$uid/$name"

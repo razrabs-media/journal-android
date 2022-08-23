@@ -31,7 +31,8 @@ import java.net.URL
 fun DetailScreen(
     postUid: String,
     vm: DetailViewModel = getViewModel(),
-    onCommentsClicked: () -> Unit
+    onCommentsClicked: (Pair<String, String>) -> Unit,
+    onBackAction: () -> Unit
 ) {
     LaunchedEffect(postUid) {
         vm.populateState(postUid)
@@ -49,7 +50,7 @@ fun Context.shareLink(link: String) {
 }
 
 @Composable
-fun DetailContent(state: DetailViewModel.State, onCommentsClicked: () -> Unit) {
+fun DetailContent(state: DetailViewModel.State, onCommentsClicked: (Pair<String, String>) -> Unit) {
     val post = state.post
     val ctx = LocalContext.current
 
@@ -74,17 +75,17 @@ fun DetailContent(state: DetailViewModel.State, onCommentsClicked: () -> Unit) {
                 PostInfoBlock(
                     tags = post.tags?.map { it.name } ?: listOf(),
                     commentCount = post.comments.size,
-                    onCommentsClicked = onCommentsClicked,
+                    onCommentsClicked = { onCommentsClicked(Pair(post.title, post.uid)) },
                     onShareClicked = {
                         ctx.shareLink(link = "$POST_PREFIX${post.uid}")
                     })
             }
-            item {
+            item(key = "markdown") {
                 MarkDown(
                     text = post.content, modifier = Modifier.padding(horizontal = 8.dp)
                 )
             }
-            item {
+            item(key = "footer") {
                 Footer()
             }
         }

@@ -31,7 +31,7 @@ fun TextArticle(text: String, date: String, onClick: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = text,
+                text = text.uppercase(),
                 style = styreneBold(color = logo(), size = 32, letterSpacing = 0),
                 textAlign = TextAlign.Center
             )

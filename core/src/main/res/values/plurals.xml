@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="days">
+    <plurals name="days_full">
         <item quantity="one">ВЧЕРА</item>
         <item quantity="two">%1$d ДНЯ НАЗАД</item>
         <item quantity="few">%1$d ДНЯ НАЗАД</item>
         <item quantity="other">%1$d ДНЕЙ НАЗАД</item>
     </plurals>
-    <plurals name="hours">
+    <plurals name="hours_full">
         <item quantity="one">ЧАС НАЗАД</item>
         <item quantity="two">%1$d ЧАСА НАЗАД</item>
         <item quantity="few">%1$d ЧАСА НАЗАД</item>
         <item quantity="other">%1$d ЧАСОВ НАЗАД</item>
     </plurals>
-    <plurals name="minutes">
+    <plurals name="minutes_full">
         <item quantity="one">МИНУТУ НАЗАД</item>
         <item quantity="two">%1$d МИНУТЫ НАЗАД</item>
         <item quantity="few">%1$d МИНУТЫ НАЗАД</item>
         <item quantity="other">%1$d МИНУТ НАЗАД</item>
     </plurals>
-    <plurals name="seconds">
+    <plurals name="seconds_full">
         <item quantity="one">СЕКУНДУ НАЗАД</item>
         <item quantity="two">%1$d СЕКУНДЫ НАЗАД</item>
         <item quantity="few">%1$d СЕКУНДЫ НАЗАД</item>
         <item quantity="other">%1$d СЕКУНД НАЗАД</item>
+    </plurals>
+    <plurals name="days_small">
+        <item quantity="one">%1$d Д</item>
+        <item quantity="two">%1$d Д</item>
+        <item quantity="few">%1$d Д</item>
+        <item quantity="other">%1$d Д</item>
+    </plurals>
+    <plurals name="hours_small">
+        <item quantity="one">%1$d Ч</item>
+        <item quantity="two">%1$d Ч</item>
+        <item quantity="few">%1$d Ч</item>
+        <item quantity="other">%1$d Ч</item>
+    </plurals>
+    <plurals name="minutes_small">
+        <item quantity="one">%1$d МИН</item>
+        <item quantity="two">%1$d МИН</item>
+        <item quantity="few">%1$d МИН</item>
+        <item quantity="other">%1$d МИН</item>
+    </plurals>
+    <plurals name="seconds_small">
+        <item quantity="one">%1$d СЕК</item>
+        <item quantity="two">%1$d СЕК</item>
+        <item quantity="few">%1$d СЕК</item>
+        <item quantity="other">%1$d СЕК</item>
     </plurals>
 </resources>

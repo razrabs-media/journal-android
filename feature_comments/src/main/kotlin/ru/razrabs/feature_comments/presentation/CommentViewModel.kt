@@ -3,10 +3,11 @@ package ru.razrabs.feature_comments.presentation
 import androidx.lifecycle.ViewModel
 import org.koin.android.annotation.KoinViewModel
 import ru.razrabs.core.UiStateFlow
+import ru.razrabs.core.ext.Ok
 import ru.razrabs.core.ext.launchIO
 import ru.razrabs.feature_comments.domain.CreateComment
 import ru.razrabs.feature_comments.domain.LoadComments
-import ru.razrabs.feature_feed.presentation.preview.FeedViewModel
+import ru.razrabs.network.models.comments.Item
 import ru.razrabs.network.models.post.Author
 import ru.razrabs.network.models.post.Comment
 
@@ -20,16 +21,27 @@ class CommentViewModel(
         UiStateFlow<State>(State(listOf())) {}
 
     init {
-        launchIO {
-            state.update {
-                it.copy(
-                    comments = getTestList()
-                )
-            }
-        }
     }
 
-    data class State(val comments: List<Comment>)
+    fun initialize(
+        postUid: String,
+        name: String
+    ) =
+        launchIO {
+            state.update {
+                it.copy(name = name)
+            }
+            val result = loadCommentsUseCase(postUid)
+            if (result is Ok) {
+                state.update {
+                    it.copy(
+                        comments = result.value.items
+                    )
+                }
+            }
+        }
+
+    data class State(val comments: List<Item>, val name: String = "")
 
     companion object {
         fun getTestList() = listOf(

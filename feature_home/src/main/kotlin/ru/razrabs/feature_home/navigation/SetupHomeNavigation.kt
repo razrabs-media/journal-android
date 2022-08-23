@@ -15,7 +15,11 @@ import ru.razrabs.feature_feed.presentation.preview.FeedScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun SetupHomeNavigation(navController: NavHostController, onCommentsClicked: (String) -> Unit) {
+fun SetupHomeNavigation(
+    navController: NavHostController,
+    onCommentsClicked: (Pair<String, String>) -> Unit,
+    onBackAction: () -> Unit
+) {
     AnimatedNavHost(navController = navController, startDestination = HomeScreen.FeedScreen.route) {
         composable(HomeScreen.FeedScreen.route,
             enterTransition = {
@@ -73,8 +77,8 @@ fun SetupHomeNavigation(navController: NavHostController, onCommentsClicked: (St
             }) {
             it.arguments?.getString(UID)?.let { postUid ->
                 DetailScreen(postUid = postUid, onCommentsClicked = {
-                    onCommentsClicked(postUid)
-                })
+                    onCommentsClicked(it)
+                }, onBackAction = onBackAction)
             }
         }
     }

@@ -70,7 +70,7 @@ fun BigArticleContent(
                 .fillMaxWidth()
         )
         VerticalSpacer(height = 8)
-        Text(text = title, style = styreneBold(color = logo(), size = 16, letterSpacing = 0))
+        Text(text = title.uppercase(), style = styreneBold(color = logo(), size = 16, letterSpacing = 0))
         VerticalSpacer(height = 4)
         Text(
             text = date,

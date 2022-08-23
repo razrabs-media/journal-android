@@ -10,7 +10,7 @@ import java.util.*
 
 private const val serverInputPattern = "yyyy-MM-dd'T'HH:mm:ss"
 
-fun Context.parseDate(date: String): String {
+fun Context.parseDate(date: String, fullFormat: Boolean = true): String {
     val ldt = LocalDateTime.parse(date)
     val zoneId: ZoneId = ZoneId.of("Europe/Moscow")
     val zdt: ZonedDateTime = ldt.atZone(zoneId)
@@ -23,27 +23,43 @@ fun Context.parseDate(date: String): String {
             Calendar.DAY_OF_MONTH
         ) - 7..calendar.get(Calendar.DAY_OF_MONTH))
 
-    val result =  if (thisWeek) {
+    val result = if (thisWeek) {
         val today = calendar.get(Calendar.DAY_OF_MONTH) == zdt.dayOfMonth
         if (today) {
             val thisHour = calendar.get(Calendar.HOUR_OF_DAY) == zdt.hour
             val thisMinute = calendar.get(Calendar.MINUTE) == zdt.minute
             if (thisHour) {
                 if (thisMinute) {
-                    getProperString(calendar.get(Calendar.SECOND), zdt.second, R.plurals.seconds)
+                    getProperString(
+                        calendar.get(Calendar.SECOND),
+                        zdt.second,
+                        if (fullFormat) R.plurals.seconds_full else R.plurals.seconds_small
+                    )
                 } else {
-                    getProperString(calendar.get(Calendar.MINUTE), zdt.minute, R.plurals.minutes)
+                    getProperString(
+                        calendar.get(Calendar.MINUTE),
+                        zdt.minute,
+                        if (fullFormat) R.plurals.minutes_full else R.plurals.minutes_small
+                    )
                 }
             } else {
-                getProperString(calendar.get(Calendar.HOUR_OF_DAY), zdt.hour, R.plurals.hours)
+                getProperString(
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    zdt.hour,
+                    if (fullFormat) R.plurals.hours_full else R.plurals.hours_small
+                )
             }
         } else {
-            getProperString(calendar.get(Calendar.DAY_OF_MONTH), zdt.dayOfMonth, R.plurals.days)
+            getProperString(
+                calendar.get(Calendar.DAY_OF_MONTH),
+                zdt.dayOfMonth,
+                if (fullFormat) R.plurals.days_full else R.plurals.days_small
+            )
         }
     } else if (thisYear) {
-        date.getDateInAnotherFormat(serverInputPattern, "d MMMM")
+        date.getDateInAnotherFormat(serverInputPattern, if(fullFormat) "d MMMM" else "d MMM")
     } else {
-        date.getDateInAnotherFormat(serverInputPattern, "d MMMM yyyy")
+        date.getDateInAnotherFormat(serverInputPattern, if(fullFormat) "d MMMM yyyy" else "d MMM yy")
     }
     return result
 }

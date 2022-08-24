@@ -1,6 +1,7 @@
 package ru.razrabs.design.theming
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -39,6 +40,15 @@ fun styreneMedium(color: Color, size: Int) =
 
 fun styreneRegular(color: Color, size: Int, letterSpacing: Int = 0) =
     TextStyle(
+        fontSize = size.sp,
+        fontWeight = FontWeight.Normal,
+        color = color,
+        fontFamily = Styrene,
+        letterSpacing = letterSpacing.sp
+    )
+
+fun styreneRegularSpan(color: Color, size: Int, letterSpacing: Int = 0) =
+    SpanStyle(
         fontSize = size.sp,
         fontWeight = FontWeight.Normal,
         color = color,

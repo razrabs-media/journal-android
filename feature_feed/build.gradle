@@ -12,6 +12,4 @@ apply from: '../base.gradle'
 
 dependencies {
     implementation(project(":design"))
-    implementation(project(":markdownview"))
-    implementation 'io.github.amrdeveloper:codeview:1.3.5'
 }

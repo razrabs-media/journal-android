@@ -1,9 +1,10 @@
 package ru.razrabs.feature_feed.presentation.detail
 
-import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.ClickableText
@@ -22,27 +23,27 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.size.Scale
-import coil.size.ViewSizeResolver
-import com.amrdeveloper.codeview.CodeView
-import com.mukesh.MarkDown
 import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import ru.razrabs.core.constants.POST_PREFIX
 import ru.razrabs.core.ext.parseDate
 import ru.razrabs.design.components.detail.PostInfoBlock
-import ru.razrabs.design.components.feed.BigArticle
 import ru.razrabs.design.components.feed.BigArticleContent
 import ru.razrabs.design.components.home.Footer
 import ru.razrabs.design.theming.*
+import ru.razrabs.feature_feed.data.FeedCacheImpl
+import ru.razrabs.feature_feed.data.FeedDataSourceImpl
+import ru.razrabs.feature_feed.data.FeedRepositoryImpl
+import ru.razrabs.feature_feed.domain.LoadPost
 import ru.razrabs.feature_feed.presentation.detail.markdown_parsing.MarkdownItem
+import ru.razrabs.feature_feed.presentation.detail.markdown_parsing.MarkdownParser
 import ru.razrabs.feature_feed.presentation.detail.markdown_parsing.TextElement
-import java.net.URL
+import ru.razrabs.network.APIImpl
 
 @Composable
 fun DetailScreen(
@@ -204,6 +205,16 @@ fun DetailContent(
                                         }
                                 })
                         }
+                        is MarkdownItem.Quotation -> {
+                            Text(
+                                text = it.text,
+                                style = styreneRegular(color = primary(), size = 20),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 8.dp)
+                                    .background(backgroundSecondary())
+                            )
+                        }
                         is MarkdownItem.Code -> {
                             Column(
                                 modifier = Modifier
@@ -213,7 +224,7 @@ fun DetailContent(
                                 it.elements.forEach {
                                     Text(
                                         text = it,
-                                        style = styreneRegular(color = Color.Red, size = 20)
+                                        style = styreneRegular(color = secondary(), size = 20)
                                     )
                                 }
                             }
@@ -230,11 +241,6 @@ fun DetailContent(
                         }
                     }
                 }
-//            item(key = "markdown") {
-//                MarkDown(
-//                    text = post.content, modifier = Modifier.padding(horizontal = 8.dp)
-//                )
-//            }
                 item(key = "footer") {
                     Footer()
                 }
@@ -246,5 +252,22 @@ fun DetailContent(
 @Preview
 @Composable
 fun PreviewDetail() {
-
+    val vm = DetailViewModel(
+        LoadPost(
+            FeedRepositoryImpl(
+                FeedDataSourceImpl(APIImpl()),
+                FeedCacheImpl()
+            )
+        ),
+        MarkdownParser()
+    )
+    LaunchedEffect(Unit) {
+        vm.populateState("0b31b289-7381-4a40-84e9-278fa9aa35cc")
+    }
+    val state = vm.state.uiState.collectAsState().value
+    DetailContent(
+        state = state, onCommentsClicked = {}, detailImageLoader = DetailImageLoader(
+            LocalContext.current
+        )
+    )
 }

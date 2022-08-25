@@ -19,6 +19,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import org.koin.androidx.compose.getViewModel
 import ru.razrabs.core.ext.parseDate
+import ru.razrabs.debug.OPEN_MARKDOWN
 import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.components.feed.BigArticle
 import ru.razrabs.design.components.feed.TextArticle
@@ -38,6 +39,11 @@ fun FeedScreen(
         onForceUpdate = { vm.updateFrontPage(true) },
         openDetail = openDetail
     )
+    if (OPEN_MARKDOWN) {
+        LaunchedEffect(Unit) {
+            openDetail("0b31b289-7381-4a40-84e9-278fa9aa35cc")
+        }
+    }
 }
 
 @Composable
@@ -62,13 +68,28 @@ fun FeedContent(
                     contentPadding = PaddingValues(horizontal = 8.dp)
                 ) {
                     item {
-                        ArticleGroupButton(title = "ВСЕ ПОДРЯД", onClick = { }, active = false, clickable = true)
+                        ArticleGroupButton(
+                            title = "ВСЕ ПОДРЯД",
+                            onClick = { },
+                            active = false,
+                            clickable = true
+                        )
                     }
                     item {
-                        ArticleGroupButton(title = "ОТ РЕДАКЦИИ", onClick = { }, active = false, clickable = true)
+                        ArticleGroupButton(
+                            title = "ОТ РЕДАКЦИИ",
+                            onClick = { },
+                            active = false,
+                            clickable = true
+                        )
                     }
                     item {
-                        ArticleGroupButton(title = "МНЕНИЯ", onClick = { }, active = false, clickable = true)
+                        ArticleGroupButton(
+                            title = "МНЕНИЯ",
+                            onClick = { },
+                            active = false,
+                            clickable = true
+                        )
                     }
                 }
             }

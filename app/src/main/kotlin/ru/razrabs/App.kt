@@ -5,8 +5,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.ksp.generated.CommentModuleModule
 import org.koin.ksp.generated.FeedModuleModule
-import org.koin.ksp.generated.NetworkModuleModule
 import org.koin.ksp.generated.ProfileModuleModule
+import ru.razrabs.network.networkModule
 
 class App: Application() {
 
@@ -16,7 +16,7 @@ class App: Application() {
         startKoin {
             androidContext(this@App)
             modules(
-                NetworkModuleModule,
+                networkModule,
                 FeedModuleModule,
                 CommentModuleModule,
                 ProfileModuleModule

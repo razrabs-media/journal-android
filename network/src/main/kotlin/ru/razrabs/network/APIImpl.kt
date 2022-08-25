@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 @Single
 class APIImpl : API {
 
-    private var BASE_URL = "https://api.razrabs.ru/gql"
+    private var BASE_URL = BuildConfig.API_ENDPOINT
 
     private val httpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()

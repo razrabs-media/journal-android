@@ -38,6 +38,16 @@ android {
             it.srcDirs += "build/generated/ksp/${variant.name}/kotlin"
         }
     }
+
+    flavorDimensions "env"
+    productFlavors {
+        prod {
+            dimension "env"
+        }
+        dev {
+            dimension "env"
+        }
+    }
 }
 
 dependencies {
@@ -109,6 +119,7 @@ dependencies {
     implementation "com.airbnb.android:lottie-compose:$lottieVersion"
     implementation(project(":core"))
     implementation(project(":network"))
+    implementation(project(":debug"))
     api(project(":database"))
 
     // Koin Core features

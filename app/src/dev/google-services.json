@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "812575435977",
+    "project_id": "razrabs-prod",
+    "storage_bucket": "razrabs-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812575435977:android:8fad1e3c70cd8421623118",
+        "android_client_info": {
+          "package_name": "ru.razrabs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812575435977-3933ake4vgf67vj1c6d4lkbpshu334ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3qRhmH9Aic-PuMQwKxOkpjMZmOU4aRfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812575435977-3933ake4vgf67vj1c6d4lkbpshu334ld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812575435977:android:281ab4213a7b22c7623118",
+        "android_client_info": {
+          "package_name": "ru.razrabs.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812575435977-3933ake4vgf67vj1c6d4lkbpshu334ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3qRhmH9Aic-PuMQwKxOkpjMZmOU4aRfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812575435977-3933ake4vgf67vj1c6d4lkbpshu334ld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

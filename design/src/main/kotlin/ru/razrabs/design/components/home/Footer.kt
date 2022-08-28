@@ -29,6 +29,7 @@ fun Footer() {
             .fillMaxWidth()
             .padding(8.dp)
     ) {
+        VerticalSpacer(height = 16)
         Divider(modifier = Modifier.fillMaxWidth(), color = logo())
         VerticalSpacer(height = 16)
         Text(

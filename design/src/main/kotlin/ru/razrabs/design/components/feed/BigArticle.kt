@@ -3,7 +3,6 @@ package ru.razrabs.design.components.feed
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,7 +17,6 @@ import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.subcomponents.common.ButtonWithoutPadding
 import ru.razrabs.design.subcomponents.common.cornerRadius0
 import ru.razrabs.design.subcomponents.common.zeroElevation
-import ru.razrabs.design.theming.background
 import ru.razrabs.design.theming.logo
 import ru.razrabs.design.theming.secondary
 import ru.razrabs.design.theming.styreneBold
@@ -35,10 +33,8 @@ fun BigArticle(
         shape = cornerRadius0,
         onClick = onClick,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 8.dp),
+            .fillMaxWidth(),
         elevation = zeroElevation(),
-        backgroundColor = background()
     ) {
         BigArticleContent(title = title, url = url, date = date)
     }
@@ -52,7 +48,9 @@ fun BigArticleContent(
     date: String,
 ) {
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 4.dp)
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -76,5 +74,6 @@ fun BigArticleContent(
             text = date,
             style = styreneBold(color = secondary(), size = 14, letterSpacing = 1)
         )
+        VerticalSpacer(height = 8)
     }
 }

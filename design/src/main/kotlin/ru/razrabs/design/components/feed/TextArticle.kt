@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.subcomponents.common.ButtonWithoutPadding
 import ru.razrabs.design.subcomponents.common.cornerRadius0
+import ru.razrabs.design.subcomponents.common.zeroElevation
 import ru.razrabs.design.theming.logo
 import ru.razrabs.design.theming.styreneBold
 import kotlin.math.log
@@ -23,8 +24,11 @@ fun TextArticle(text: String, date: String, onClick: () -> Unit) {
     ButtonWithoutPadding(
         shape = cornerRadius0,
         onClick = onClick,
+        elevation = zeroElevation(),
         borderStroke = BorderStroke(1.dp, logo()),
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),

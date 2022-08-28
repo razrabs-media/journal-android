@@ -24,6 +24,7 @@ import ru.razrabs.core.ext.parseDate
 import ru.razrabs.debug.OPEN_MARKDOWN
 import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.components.feed.BigArticle
+import ru.razrabs.design.components.feed.SmallArticle
 import ru.razrabs.design.components.feed.TextArticle
 import ru.razrabs.design.components.home.ArticleGroupButton
 import ru.razrabs.design.components.home.Footer
@@ -111,10 +112,10 @@ fun FeedContent(
 
             items(state.frontPage?.content ?: listOf(), key = { it.uid }) {
                 BigArticle(
-                    modifier = Modifier.padding(top = 16.dp),
                     title = it.post.title,
                     url = it.post.previewUrl ?: "",
-                    date = ctx.parseDate(it.post.createdAt)
+                    date = ctx.parseDate(it.post.createdAt),
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     openDetail(it.post.uid)
                 }

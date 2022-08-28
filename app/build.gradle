@@ -84,8 +84,10 @@ dependencies {
     implementation project(":feature_home")
     implementation project(":feature_profile")
     implementation project(":network")
+    implementation platform('com.google.firebase:firebase-bom:30.3.1')
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.9'
-    implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-auth-ktx'
 
     // Koin Core features
     implementation "io.insert-koin:koin-core:$koin_version"

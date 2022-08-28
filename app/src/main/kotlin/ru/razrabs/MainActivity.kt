@@ -12,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import org.koin.android.ext.android.get
 import ru.razrabs.design.theming.background
+import ru.razrabs.feature_auth.github.GitHubAuthHandler
 import ru.razrabs.ui.theme.RazrabsTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,6 +45,9 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        val githubAuthText: GitHubAuthHandler = get()
+        githubAuthText.auth(this)
     }
 }
 

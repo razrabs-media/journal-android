@@ -76,8 +76,6 @@ fun DetailContent(
     val ctx = LocalContext.current
     val uriHandler = LocalUriHandler.current
 
-
-
     LaunchedEffect(state.items) {
         state.items.filterIsInstance<MarkdownItem.Image>().forEach {
             val request = ImageRequest.Builder(ctx)

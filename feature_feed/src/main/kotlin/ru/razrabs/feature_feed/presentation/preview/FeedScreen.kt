@@ -15,8 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.request.ImageRequest
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import ru.razrabs.core.ext.parseDate
 import ru.razrabs.debug.OPEN_MARKDOWN
@@ -25,6 +27,7 @@ import ru.razrabs.design.components.feed.BigArticle
 import ru.razrabs.design.components.feed.TextArticle
 import ru.razrabs.design.components.home.ArticleGroupButton
 import ru.razrabs.design.components.home.Footer
+import ru.razrabs.feature_feed.presentation.detail.markdown_parsing.MarkdownItem
 
 @Composable
 fun FeedScreen(
@@ -51,9 +54,21 @@ fun FeedContent(
     footer: @Composable LazyItemScope.() -> Unit,
     state: FeedViewModel.State,
     onForceUpdate: () -> Unit,
-    openDetail: (String) -> Unit
+    openDetail: (String) -> Unit,
+    feedImageLoader: FeedImageLoader = get()
 ) {
+
     val ctx = LocalContext.current
+    LaunchedEffect(state.frontPage?.content) {
+        state.frontPage?.content?.let {
+            it.forEach {
+                val request = ImageRequest.Builder(ctx)
+                    .data(it.post.previewUrl)
+                    .build()
+                feedImageLoader.loader.enqueue(request)
+            }
+        }
+    }
     val swipeRefreshState = rememberSwipeRefreshState(state.isRefreshing)
     SwipeRefresh(
         state = swipeRefreshState,
@@ -135,9 +150,12 @@ fun FeedContent(
 @Preview
 @Composable
 fun PreviewFeed() {
+    val ctx = LocalContext.current
     FeedContent(
         footer = { Footer() },
         state = FeedViewModel.State(),
         onForceUpdate = {},
-        openDetail = {})
+        openDetail = {},
+        feedImageLoader = FeedImageLoader(ctx)
+    )
 }

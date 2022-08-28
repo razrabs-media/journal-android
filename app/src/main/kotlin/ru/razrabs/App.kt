@@ -1,14 +1,12 @@
 package ru.razrabs
 
 import android.app.Application
-import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.ksp.generated.AuthModule
 import org.koin.ksp.generated.CommentModuleModule
 import org.koin.ksp.generated.FeedModuleModule
 import org.koin.ksp.generated.ProfileModuleModule
-import ru.razrabs.feature_auth.github.GitHubAuthHandler
 import ru.razrabs.network.networkModule
 
 class App: Application() {

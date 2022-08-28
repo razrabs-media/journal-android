@@ -15,4 +15,7 @@
     <string name="we_login_via_github">МЫ ЛОГИНИМ ЧЕРЕЗ ГИТХАБ</string>
     <string name="after_login">После логина появится возможность комментировать материалы. А дальше мы придумаем, какие возможности появятся у залогированного читателя</string>
     <string name="log_out">РАЗЛОГИНИТЬСЯ</string>
+    <string name="articles_written">%1$d материалов открыто</string>
+    <string name="comments_written">%1$d комментов написано</string>
+    <string name="with_us_since">С Разрабами с %1$s</string>
 </resources>

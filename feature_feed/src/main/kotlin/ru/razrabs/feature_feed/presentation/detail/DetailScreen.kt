@@ -122,6 +122,7 @@ fun DetailContent(
                         }
                         is MarkdownItem.Image -> {
                             AsyncImage(
+                                imageLoader = detailImageLoader.loader,
                                 model = ImageRequest.Builder(LocalContext.current)
                                     .data(it.path)
                                     .crossfade(true)

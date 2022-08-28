@@ -24,7 +24,7 @@ import ru.razrabs.design.theming.styreneBold
 import ru.razrabs.design.unboundClickable
 
 @Composable
-fun HomeAppBar(backShown: Boolean, onBackAction: () -> Unit) {
+fun HomeAppBar(backShown: Boolean, onBackAction: () -> Unit, onProfileClicked: () -> Unit) {
     val backButtonVisibility by animateFloatAsState(targetValue = if (backShown) 1f else 0f)
     val titleStartPadding by animateDpAsState(targetValue = if (backShown) 48.dp else 0.dp)
     Column(
@@ -43,9 +43,11 @@ fun HomeAppBar(backShown: Boolean, onBackAction: () -> Unit) {
                         Alignment.CenterStart
                     )
             )
-            UserNameButton(modifier = Modifier.align(Alignment.CenterEnd), initials = "LN") {
-
-            }
+            UserNameButton(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                initials = "LN",
+                onClick = onProfileClicked
+            )
             Text(
                 text = stringResource(id = R.string.razrabs),
                 style = styreneBold(color = logo(), size = 24, letterSpacing = 3),
@@ -63,5 +65,5 @@ fun HomeAppBar(backShown: Boolean, onBackAction: () -> Unit) {
 @Preview
 @Composable
 fun PreviewHomeAppBar() {
-    HomeAppBar(true) {}
+    HomeAppBar(true, onBackAction = {}, onProfileClicked = {})
 }

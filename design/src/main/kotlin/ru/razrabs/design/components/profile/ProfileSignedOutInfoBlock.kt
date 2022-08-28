@@ -13,7 +13,7 @@ import ru.razrabs.design.theming.styreneMedium
 import ru.razrabs.design.theming.styreneRegular
 
 @Composable
-fun ProfileInfoBlock() {
+fun ProfileSignedOutInfoBlock() {
     Column(
         verticalArrangement = Arrangement.Bottom,
         modifier = Modifier
@@ -35,5 +35,5 @@ fun ProfileInfoBlock() {
 @Preview
 @Composable
 fun PreviewProfileInfoBlock() {
-    ProfileInfoBlock()
+    ProfileSignedOutInfoBlock()
 }

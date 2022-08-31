@@ -47,14 +47,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-
-        val githubAuthText: AuthHandler = get()
-        CoroutineScope(Dispatchers.IO).launch {
-            val result = githubAuthText.auth(this@MainActivity)
-            println(result)
-            println(result)
-            println(result)
-        }
     }
 }
 

@@ -12,7 +12,7 @@ class CommentDataSourceImpl(private val api: API) : CommentDataSource {
         return api.getComments(postUid)
     }
 
-    override suspend fun createPost(postUid: String, content: String): Result<Unit, Exception> {
-        TODO("Not yet implemented")
+    override suspend fun createComment(postUid: String, content: String): Result<Unit, Exception> {
+        return api.createComment(postUid = postUid, content = content)
     }
 }

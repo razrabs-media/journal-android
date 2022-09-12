@@ -5,5 +5,7 @@ import ru.razrabs.core.ext.Result
 
 interface CommentRepository {
     suspend fun getComments(postUid: String): Result<Comments, Exception>
-    suspend fun createPost(postUid: String, content: String): Result<Unit, Exception>
+    suspend fun createComment(postUid: String, content: String): Result<Unit, Exception>
+
+
 }

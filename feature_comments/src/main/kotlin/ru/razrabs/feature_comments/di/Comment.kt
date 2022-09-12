@@ -5,5 +5,5 @@ import org.koin.core.annotation.Module
 
 @Module
 @ComponentScan("ru.razrabs.feature_comments")
-class CommentModule {
+class Comment {
 }

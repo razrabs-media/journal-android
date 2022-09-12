@@ -13,6 +13,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.getViewModel
 import ru.razrabs.design.components.home.Footer
 import ru.razrabs.design.components.home.HomeAppBar
 import ru.razrabs.design.theming.background
@@ -22,13 +23,17 @@ import ru.razrabs.feature_home.navigation.SetupHomeNavigation
 import ru.razrabs.feature_profile.presentation.ProfileScreen
 
 @Composable
-fun HomeScreen(onCommentsClicked: (Pair<String, String>) -> Unit) {
-    HomeContent(onCommentsClicked = onCommentsClicked)
+fun HomeScreen(
+    onCommentsClicked: (Pair<String, String>) -> Unit,
+    vm: HomeViewModel = getViewModel()
+) {
+    val state = vm.state.uiState.collectAsState().value
+    HomeContent(onCommentsClicked = onCommentsClicked, state = state)
 }
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun HomeContent(onCommentsClicked: (Pair<String, String>) -> Unit) {
+fun HomeContent(state: HomeViewModel.State, onCommentsClicked: (Pair<String, String>) -> Unit) {
     val navController = rememberAnimatedNavController()
     val onBackAction = {
         navController.navigateUp()
@@ -63,7 +68,8 @@ fun HomeContent(onCommentsClicked: (Pair<String, String>) -> Unit) {
                                 coroutineScope.launch {
                                     drawerState.open()
                                 }
-                            }
+                            },
+                            initials = state.initials
                         )
                     },
                     backgroundColor = background(),
@@ -82,5 +88,5 @@ fun HomeContent(onCommentsClicked: (Pair<String, String>) -> Unit) {
 @Preview
 @Composable
 fun PreviewHome() {
-    HomeContent() {}
+    HomeContent(state = HomeViewModel.State("LN")) {}
 }

@@ -32,13 +32,13 @@ class ProfileViewModel(private val authGate: AuthGate) : ViewModel() {
         }
     }
 
-    fun updateUserState() = launchIO {
+    private fun updateUserState() = launchIO {
         val result = authGate.getUser()
         if (result != null) {
             state.update {
                 it.copy(
                     loggedIn = true,
-                    username = result.name,
+                    username = result.username,
                     fullUserName = result.name,
                     avatarUrl = result.avatarUrl
                 )

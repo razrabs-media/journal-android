@@ -33,7 +33,8 @@ fun BigArticle(
         shape = cornerRadius0,
         onClick = onClick,
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
         elevation = zeroElevation(),
     ) {
         BigArticleContent(title = title, url = url, date = date)
@@ -50,7 +51,7 @@ fun BigArticleContent(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 4.dp)
+            .padding(top = 8.dp, bottom = 4.dp)
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -68,7 +69,10 @@ fun BigArticleContent(
                 .fillMaxWidth()
         )
         VerticalSpacer(height = 8)
-        Text(text = title.uppercase(), style = styreneBold(color = logo(), size = 16, letterSpacing = 0))
+        Text(
+            text = title.uppercase(),
+            style = styreneBold(color = logo(), size = 16, letterSpacing = 0)
+        )
         VerticalSpacer(height = 4)
         Text(
             text = date,

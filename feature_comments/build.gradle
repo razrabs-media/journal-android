@@ -13,4 +13,6 @@ apply from: '../base.gradle'
 dependencies {
     implementation(project(":design"))
     implementation(project(":feature_feed"))
+    implementation(project(":feature_auth"))
+    implementation(project(":feature_profile"))
 }

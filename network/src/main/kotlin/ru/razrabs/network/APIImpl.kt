@@ -8,6 +8,7 @@ import ru.razrabs.core.ext.Err
 import ru.razrabs.core.ext.Ok
 import ru.razrabs.core.ext.Result
 import ru.razrabs.graphql.*
+import ru.razrabs.graphql.type.CreateCommentInput
 import ru.razrabs.network.models.comments.Comments
 import ru.razrabs.network.models.comments.map
 import ru.razrabs.network.models.feeds.Feed
@@ -95,6 +96,16 @@ class APIImpl : API {
         val data = result.data
         return if (result.errors.isNullOrEmpty() && data != null) {
             Ok(data.map())
+        } else {
+            Err(RuntimeException())
+        }
+    }
+
+    override suspend fun createComment(content: String, postUid: String): Result<Unit, Exception> {
+        val result = apolloClient.mutation(SendCommentMutation(CreateCommentInput(content, postUid))).execute()
+        val data = result.data
+        return if(result.errors.isNullOrEmpty() && data!=null){
+            Ok(Unit)
         } else {
             Err(RuntimeException())
         }

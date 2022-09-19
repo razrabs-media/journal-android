@@ -12,3 +12,12 @@ fun openWebPage(context: Context, url: String) {
         )
     )
 }
+
+fun openEmail(context: Context, url: String) {
+    context.startActivity(
+        Intent(
+            Intent.ACTION_SENDTO,
+            Uri.parse(url)
+        )
+    )
+}

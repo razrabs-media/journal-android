@@ -1,7 +1,9 @@
 package ru.razrabs.feature_feed.presentation.detail
 
 import android.content.Context
+import android.widget.FrameLayout
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,16 +20,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.app.ComponentActivity
 import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.size.Scale
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import ru.razrabs.core.constants.POST_PREFIX
@@ -75,6 +84,7 @@ fun DetailContent(
     val post = state.post
     val ctx = LocalContext.current
     val uriHandler = LocalUriHandler.current
+    val dp8 = LocalDensity.current.run { 8.dp.toPx() }.toInt()
 
     LaunchedEffect(state.items) {
         state.items.filterIsInstance<MarkdownItem.Image>().forEach {
@@ -111,11 +121,11 @@ fun DetailContent(
                             ctx.shareLink(link = "$POST_PREFIX${post.uid}")
                         })
                 }
-                items(state.items) {
-                    when (it) {
+                items(state.items) { item ->
+                    when (item) {
                         is MarkdownItem.Header -> {
                             Text(
-                                text = it.text.uppercase(),
+                                text = item.text.uppercase(),
                                 style = styreneMedium(color = primary(), size = 24),
                                 modifier = Modifier.padding(horizontal = 8.dp)
                             )
@@ -124,15 +134,15 @@ fun DetailContent(
                             AsyncImage(
                                 imageLoader = detailImageLoader.loader,
                                 model = ImageRequest.Builder(LocalContext.current)
-                                    .data(it.path)
+                                    .data(item.path)
                                     .crossfade(true)
-                                    .memoryCacheKey(it.path)
+                                    .memoryCacheKey(item.path)
                                     .memoryCachePolicy(CachePolicy.ENABLED)
                                     .diskCachePolicy(CachePolicy.ENABLED)
-                                    .diskCacheKey(it.path)
+                                    .diskCacheKey(item.path)
                                     .scale(Scale.FILL)
                                     .build(),
-                                contentDescription = it.contentDescription,
+                                contentDescription = item.contentDescription,
                                 contentScale = ContentScale.FillWidth,
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -141,7 +151,7 @@ fun DetailContent(
                         }
                         is MarkdownItem.Text -> {
                             val annotatedString = buildAnnotatedString {
-                                it.elements.forEach {
+                                item.elements.forEach {
                                     when (it) {
                                         is TextElement.Link -> {
                                             pushStringAnnotation(
@@ -192,7 +202,7 @@ fun DetailContent(
                                     size = 20
                                 ),
                                 onClick = { offset ->
-                                    it.elements.filterIsInstance<TextElement.Link>()
+                                    item.elements.filterIsInstance<TextElement.Link>()
                                         .forEach { item ->
                                             annotatedString.getStringAnnotations(
                                                 tag = item.text,
@@ -206,7 +216,7 @@ fun DetailContent(
                         }
                         is MarkdownItem.Quotation -> {
                             Text(
-                                text = it.text,
+                                text = item.text,
                                 style = styreneRegular(color = primary(), size = 20),
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -220,7 +230,7 @@ fun DetailContent(
                                     .fillMaxWidth()
                                     .padding(horizontal = 8.dp)
                             ) {
-                                it.elements.forEach {
+                                item.elements.forEach {
                                     Text(
                                         text = it,
                                         style = styreneRegular(color = secondary(), size = 20)
@@ -234,6 +244,83 @@ fun DetailContent(
                                     .fillMaxWidth()
                                     .padding(horizontal = 8.dp), color = primary()
                             )
+                        }
+                        is MarkdownItem.YouTubeVideo -> {
+                            Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)){
+                                AndroidView(factory = {
+                                    val player = YouTubePlayerView(it)
+                                    (it as ComponentActivity).lifecycle.addObserver(player)
+                                    player.addYouTubePlayerListener(object : YouTubePlayerListener {
+                                        override fun onApiChange(youTubePlayer: YouTubePlayer) {
+
+                                        }
+
+                                        override fun onCurrentSecond(
+                                            youTubePlayer: YouTubePlayer,
+                                            second: Float
+                                        ) {
+
+                                        }
+
+                                        override fun onError(
+                                            youTubePlayer: YouTubePlayer,
+                                            error: PlayerConstants.PlayerError
+                                        ) {
+
+                                        }
+
+                                        override fun onPlaybackQualityChange(
+                                            youTubePlayer: YouTubePlayer,
+                                            playbackQuality: PlayerConstants.PlaybackQuality
+                                        ) {
+
+                                        }
+
+                                        override fun onPlaybackRateChange(
+                                            youTubePlayer: YouTubePlayer,
+                                            playbackRate: PlayerConstants.PlaybackRate
+                                        ) {
+
+                                        }
+
+                                        override fun onReady(youTubePlayer: YouTubePlayer) {
+                                            youTubePlayer.cueVideo(item.url, 0f)
+                                        }
+
+                                        override fun onStateChange(
+                                            youTubePlayer: YouTubePlayer,
+                                            state: PlayerConstants.PlayerState
+                                        ) {
+
+                                        }
+
+                                        override fun onVideoDuration(
+                                            youTubePlayer: YouTubePlayer,
+                                            duration: Float
+                                        ) {
+
+                                        }
+
+                                        override fun onVideoId(
+                                            youTubePlayer: YouTubePlayer,
+                                            videoId: String
+                                        ) {
+
+                                        }
+
+                                        override fun onVideoLoadedFraction(
+                                            youTubePlayer: YouTubePlayer,
+                                            loadedFraction: Float
+                                        ) {
+
+                                        }
+
+                                    })
+
+                                    player
+                                })
+                            }
+
                         }
                         else -> {
 

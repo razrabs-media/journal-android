@@ -17,7 +17,11 @@ import kotlin.coroutines.suspendCoroutine
 @Single
 class GitHubAuthHandlerImpl : AuthHandler {
 
-    private val provider = OAuthProvider.newBuilder("github.com")
+    private val provider = OAuthProvider.newBuilder("github.com").apply {
+        scopes = listOf(
+            "read:user"
+        )
+    }
     private val firebaseAuth = FirebaseAuth.getInstance()
 
     override suspend fun auth(activity: Activity): ru.razrabs.core.ext.Result<User, Exception> =

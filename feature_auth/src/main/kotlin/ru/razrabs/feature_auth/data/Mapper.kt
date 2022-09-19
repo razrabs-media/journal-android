@@ -9,18 +9,21 @@ fun FirebaseUser.parseUser(username: String?) = User(
     uid = uid,
     name = displayName ?: "",
     usernameUrl = username?.let { "https://github.com/$it" } ?: "",
-    avatarUrl = photoUrl.toString()
+    avatarUrl = photoUrl.toString(),
+    username = username
 )
 
 fun FirebaseUser.parseUserWithoutInfo() = UserWithoutInfo(
     uid = uid,
     name = displayName ?: "",
-    avatarUrl = photoUrl.toString()
+    avatarUrl = photoUrl.toString(),
+    username = ""
 )
 
-fun UserWithoutInfo.map(usernameUrl: String?) = User(
+fun UserWithoutInfo.map(username: String?) = User(
     uid = uid,
     name = name,
     avatarUrl = avatarUrl,
-    usernameUrl = usernameUrl
+    username = username,
+    usernameUrl = username?.let { "https://github.com/$it" } ?: "",
 )

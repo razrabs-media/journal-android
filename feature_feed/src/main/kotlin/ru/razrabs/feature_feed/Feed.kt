@@ -5,5 +5,5 @@ import org.koin.core.annotation.Module
 
 @Module
 @ComponentScan("ru.razrabs.feature_feed")
-class FeedModule {
+class Feed {
 }

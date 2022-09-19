@@ -3,13 +3,10 @@ package ru.razrabs
 import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import org.koin.ksp.generated.AuthModule
-import org.koin.ksp.generated.CommentModuleModule
-import org.koin.ksp.generated.FeedModuleModule
-import org.koin.ksp.generated.ProfileModuleModule
-import ru.razrabs.network.networkModule
+import org.koin.ksp.generated.*
+import ru.razrabs.network.NetworkModule
 
-class App: Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -17,11 +14,12 @@ class App: Application() {
         startKoin {
             androidContext(this@App)
             modules(
-                networkModule,
-                FeedModuleModule,
-                CommentModuleModule,
-                ProfileModuleModule,
-                AuthModule
+                NetworkModule,
+                FeedModule,
+                CommentModule,
+                ProfileModule,
+                AuthModule,
+                HomeModule
             )
         }
     }

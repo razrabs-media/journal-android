@@ -20,4 +20,6 @@ interface API {
     suspend fun getComments(postUid: String): Result<Comments, Exception>
 
     suspend fun getPost(postUid: String): Result<Post, Exception>
+
+    suspend fun createComment(content: String, postUid: String): Result<Unit, Exception>
 }

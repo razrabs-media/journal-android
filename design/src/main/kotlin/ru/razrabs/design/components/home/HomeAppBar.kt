@@ -18,13 +18,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.razrabs.core.R
 import ru.razrabs.design.VerticalSpacer
+import ru.razrabs.design.clickableWithoutRipple
 import ru.razrabs.design.subcomponents.common.VectorIcon
+import ru.razrabs.design.subcomponents.common.VectorIconColorFilter
 import ru.razrabs.design.theming.logo
 import ru.razrabs.design.theming.styreneBold
+import ru.razrabs.design.theming.styreneRegular
 import ru.razrabs.design.unboundClickable
 
 @Composable
-fun HomeAppBar(backShown: Boolean, onBackAction: () -> Unit, onProfileClicked: () -> Unit) {
+fun HomeAppBar(
+    backShown: Boolean,
+    onBackAction: () -> Unit,
+    onProfileClicked: () -> Unit,
+    initials: String?
+) {
     val backButtonVisibility by animateFloatAsState(targetValue = if (backShown) 1f else 0f)
     val titleStartPadding by animateDpAsState(targetValue = if (backShown) 48.dp else 0.dp)
     Column(
@@ -34,20 +42,31 @@ fun HomeAppBar(backShown: Boolean, onBackAction: () -> Unit, onProfileClicked: (
     ) {
         VerticalSpacer(height = 16)
         Box(modifier = Modifier.fillMaxWidth()) {
-            VectorIcon(
+            VectorIconColorFilter(
                 icon = ru.razrabs.design.R.drawable.ic_back,
                 modifier = Modifier
                     .unboundClickable(onBackAction)
                     .alpha(backButtonVisibility)
                     .align(
                         Alignment.CenterStart
-                    )
+                    ),
+                color = logo()
             )
-            UserNameButton(
-                modifier = Modifier.align(Alignment.CenterEnd),
-                initials = "LN",
-                onClick = onProfileClicked
-            )
+            if (initials != null) {
+                UserNameButton(
+                    modifier = Modifier.align(Alignment.CenterEnd),
+                    initials = initials,
+                    onClick = onProfileClicked
+                )
+            } else {
+                Text(
+                    text = stringResource(id = R.string.acc),
+                    style = styreneRegular(color = logo(), size = 16),
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .clickableWithoutRipple(onProfileClicked)
+                )
+            }
             Text(
                 text = stringResource(id = R.string.razrabs),
                 style = styreneBold(color = logo(), size = 24, letterSpacing = 3),
@@ -65,5 +84,5 @@ fun HomeAppBar(backShown: Boolean, onBackAction: () -> Unit, onProfileClicked: (
 @Preview
 @Composable
 fun PreviewHomeAppBar() {
-    HomeAppBar(true, onBackAction = {}, onProfileClicked = {})
+    HomeAppBar(true, onBackAction = {}, onProfileClicked = {}, initials = "LN")
 }

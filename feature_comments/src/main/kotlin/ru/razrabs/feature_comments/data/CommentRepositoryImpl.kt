@@ -25,7 +25,7 @@ class CommentRepositoryImpl(
         }
     }
 
-    override suspend fun createPost(postUid: String, content: String): Result<Unit, Exception> {
-        TODO("Not yet implemented")
+    override suspend fun createComment(postUid: String, content: String): Result<Unit, Exception> {
+        return commentDataSource.createComment(postUid, content)
     }
 }

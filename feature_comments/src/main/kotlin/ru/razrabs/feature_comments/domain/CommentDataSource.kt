@@ -5,5 +5,5 @@ import ru.razrabs.network.models.comments.Comments
 
 interface CommentDataSource {
     suspend fun getComments(postUid: String): Result<Comments, Exception>
-    suspend fun createPost(postUid: String, content: String): Result<Unit, Exception>
+    suspend fun createComment(postUid: String, content: String): Result<Unit, Exception>
 }

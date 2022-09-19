@@ -1,6 +1,5 @@
 package ru.razrabs.design.components.home
 
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import ru.razrabs.core.R
 import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.clickableWithoutRipple
-import ru.razrabs.design.subcomponents.common.VectorIcon
 import ru.razrabs.design.subcomponents.common.VectorIconColorFilter
 import ru.razrabs.design.theming.logo
 import ru.razrabs.design.theming.styreneBold
@@ -34,7 +32,6 @@ fun HomeAppBar(
     initials: String?
 ) {
     val backButtonVisibility by animateFloatAsState(targetValue = if (backShown) 1f else 0f)
-    val titleStartPadding by animateDpAsState(targetValue = if (backShown) 48.dp else 0.dp)
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -70,7 +67,7 @@ fun HomeAppBar(
             Text(
                 text = stringResource(id = R.string.razrabs),
                 style = styreneBold(color = logo(), size = 24, letterSpacing = 3),
-                modifier = Modifier.padding(start = titleStartPadding)
+                modifier = Modifier.align(Alignment.Center)
             )
         }
         VerticalSpacer(height = 16)

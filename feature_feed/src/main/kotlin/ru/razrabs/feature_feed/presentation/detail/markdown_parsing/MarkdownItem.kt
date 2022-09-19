@@ -8,6 +8,7 @@ sealed class MarkdownItem {
     data class Image(val contentDescription: String, val path: String) : MarkdownItem()
     data class Text(val elements: List<TextElement>) : MarkdownItem()
     data class Quotation(val text: String) : MarkdownItem()
+    data class YouTubeVideo(val url: String) : MarkdownItem()
 }
 
 sealed class TextElement {

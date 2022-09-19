@@ -11,5 +11,6 @@ android {
 apply from: '../base.gradle'
 
 dependencies {
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
     implementation(project(":design"))
 }

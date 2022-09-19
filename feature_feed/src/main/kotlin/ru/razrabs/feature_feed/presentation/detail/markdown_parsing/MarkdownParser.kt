@@ -16,7 +16,7 @@ class MarkdownParser {
                 element.trim().startsWith(QUOTATION_PREFIX) -> {
                     val level = element.filter { it == '>' }.length
                     val sb = StringBuilder()
-                    for (i in 0 until level){
+                    for (i in 0 until level) {
                         sb.append("\t\t\t\t${element.drop(level).trim()}")
                     }
                     MarkdownItem.Quotation(text = "\t\t\t\t${element.drop(2)}")
@@ -32,6 +32,11 @@ class MarkdownParser {
                         add(TextElement.UsualText(" > "))
                         addAll(text.elements)
                     })
+                }
+                element.startsWith(YOUTUBE_PREFIX) -> {
+                    MarkdownItem.YouTubeVideo(
+                        element.removePrefix(YOUTUBE_PREFIX).split("?v=").last().split(")").first()
+                    )
                 }
                 element.startsWith(SEPARATOR_PREFIX) -> MarkdownItem.Separator
                 parsingCode -> {
@@ -135,6 +140,7 @@ class MarkdownParser {
         private const val LIST_ITEM = "+ "
         private const val HEADER_PREFIX = "##"
         private const val ALTERNATIVE_HEADER_PREFIX = "\n##"
+        private const val YOUTUBE_PREFIX = "[oembed]"
         private const val IMAGE_PREFIX = "!"
         private const val CODE_PREFIX = "```"
         private const val SEPARATOR_PREFIX = "--------"

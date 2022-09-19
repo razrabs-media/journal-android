@@ -1,5 +1,6 @@
 package ru.razrabs.design.components.home
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -12,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.razrabs.core.R
 import ru.razrabs.core.constants.*
+import ru.razrabs.core.openEmail
 import ru.razrabs.core.openWebPage
 import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.clickableWithoutRipple
@@ -43,7 +45,12 @@ fun Footer() {
                     uriHandler.openUri(ABOUT_US_LINK)
                 }
                 FooterText(stringResource(id = R.string.contact)) {
-                    openWebPage(ctx, CONTACT_EMAIL_ADDRESS)
+                    try {
+                        openEmail(ctx, CONTACT_EMAIL_ADDRESS)
+                    } catch (e: Exception) {
+                        Toast.makeText(ctx, ctx.getString(R.string.no_email_app), Toast.LENGTH_LONG)
+                            .show()
+                    }
                 }
             }
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {

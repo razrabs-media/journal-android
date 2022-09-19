@@ -20,4 +20,5 @@
     <string name="with_us_since">С Разрабами с %1$s</string>
     <string name="your_avatar">Ваш аватар</string>
     <string name="comment_tooltip">Написать… (макс. 255 символов)</string>
+    <string name="no_email_app">Не найдено приложение электронной почты</string>
 </resources>

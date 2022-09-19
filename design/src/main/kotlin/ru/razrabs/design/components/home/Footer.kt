@@ -17,10 +17,7 @@ import ru.razrabs.core.openEmail
 import ru.razrabs.core.openWebPage
 import ru.razrabs.design.VerticalSpacer
 import ru.razrabs.design.clickableWithoutRipple
-import ru.razrabs.design.theming.logo
-import ru.razrabs.design.theming.secondary
-import ru.razrabs.design.theming.secondary60
-import ru.razrabs.design.theming.styreneBold
+import ru.razrabs.design.theming.*
 
 @Composable
 fun Footer() {
@@ -38,9 +35,12 @@ fun Footer() {
             text = stringResource(id = R.string.smartass),
             style = styreneBold(color = secondary60(), size = 12, letterSpacing = 1)
         )
-        VerticalSpacer(height = 8)
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        VerticalSpacer(height = 12)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(48.dp)
+        ) {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 FooterText(stringResource(id = R.string.about_us)) {
                     uriHandler.openUri(ABOUT_US_LINK)
                 }
@@ -53,7 +53,7 @@ fun Footer() {
                     }
                 }
             }
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 FooterText(stringResource(id = R.string.github)) {
                     uriHandler.openUri(GITHUB_LINK)
                 }
@@ -75,7 +75,7 @@ fun Footer() {
 fun FooterText(text: String, onClick: () -> Unit) {
     Text(
         text = text,
-        style = styreneBold(color = logo(), size = 12),
+        style = styreneRegular(color = logo(), size = 12),
         modifier = Modifier.clickableWithoutRipple(onClick)
     )
 }
